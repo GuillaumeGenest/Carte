@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		069F4B2A2A12516700AA9784 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069F4B292A12516700AA9784 /* View.swift */; };
+		06A0CE3C2A0E8CDA003103C8 /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A0CE3B2A0E8CDA003103C8 /* AnnotationView.swift */; };
+		06A0CE3F2A0E8D98003103C8 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A0CE3E2A0E8D98003103C8 /* Extension.swift */; };
+		06A0CE412A0E8FCE003103C8 /* Carte.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A0CE402A0E8FCE003103C8 /* Carte.swift */; };
+		06A0CE432A0E8FDA003103C8 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A0CE422A0E8FDA003103C8 /* Coordinator.swift */; };
+		06A0CE462A0E90E3003103C8 /* MultiPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A0CE452A0E90E3003103C8 /* MultiPolygon.swift */; };
+		06A0CE482A0E917B003103C8 /* CartePolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A0CE472A0E917B003103C8 /* CartePolygon.swift */; };
+		06A0CE4A2A0E9444003103C8 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A0CE492A0E9444003103C8 /* Configuration.swift */; };
+		06A0CE4D2A122391003103C8 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A0CE4C2A122391003103C8 /* Location.swift */; };
+		06A0CE4F2A1223A7003103C8 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A0CE4E2A1223A7003103C8 /* Category.swift */; };
+		06A0CE512A1223D1003103C8 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A0CE502A1223D1003103C8 /* LocationView.swift */; };
+		06A0CE542A12403E003103C8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A0CE532A12403C003103C8 /* MapKit.framework */; };
 		06F9633A2A0E87DC00BDC6A8 /* CarteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F963392A0E87DC00BDC6A8 /* CarteApp.swift */; };
 		06F9633C2A0E87DC00BDC6A8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F9633B2A0E87DC00BDC6A8 /* ContentView.swift */; };
 		06F9633E2A0E87DF00BDC6A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06F9633D2A0E87DF00BDC6A8 /* Assets.xcassets */; };
@@ -14,6 +26,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		069F4B292A12516700AA9784 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		06A0CE3B2A0E8CDA003103C8 /* AnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
+		06A0CE3E2A0E8D98003103C8 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		06A0CE402A0E8FCE003103C8 /* Carte.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carte.swift; sourceTree = "<group>"; };
+		06A0CE422A0E8FDA003103C8 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		06A0CE452A0E90E3003103C8 /* MultiPolygon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPolygon.swift; sourceTree = "<group>"; };
+		06A0CE472A0E917B003103C8 /* CartePolygon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartePolygon.swift; sourceTree = "<group>"; };
+		06A0CE492A0E9444003103C8 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		06A0CE4C2A122391003103C8 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		06A0CE4E2A1223A7003103C8 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		06A0CE502A1223D1003103C8 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
+		06A0CE532A12403C003103C8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS16.2.sdk/System/Library/Frameworks/MapKit.framework; sourceTree = DEVELOPER_DIR; };
 		06F963362A0E87DC00BDC6A8 /* Carte.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Carte.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06F963392A0E87DC00BDC6A8 /* CarteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarteApp.swift; sourceTree = "<group>"; };
 		06F9633B2A0E87DC00BDC6A8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -27,17 +51,73 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06A0CE542A12403E003103C8 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		06A0CE392A0E8C43003103C8 /* Carte */ = {
+			isa = PBXGroup;
+			children = (
+				06A0CE402A0E8FCE003103C8 /* Carte.swift */,
+				06A0CE422A0E8FDA003103C8 /* Coordinator.swift */,
+			);
+			path = Carte;
+			sourceTree = "<group>";
+		};
+		06A0CE3A2A0E8CB5003103C8 /* Annotation */ = {
+			isa = PBXGroup;
+			children = (
+				06A0CE3B2A0E8CDA003103C8 /* AnnotationView.swift */,
+			);
+			path = Annotation;
+			sourceTree = "<group>";
+		};
+		06A0CE3D2A0E8D6D003103C8 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				06A0CE3E2A0E8D98003103C8 /* Extension.swift */,
+				06A0CE492A0E9444003103C8 /* Configuration.swift */,
+				069F4B292A12516700AA9784 /* View.swift */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		06A0CE442A0E90AC003103C8 /* Overlays */ = {
+			isa = PBXGroup;
+			children = (
+				06A0CE452A0E90E3003103C8 /* MultiPolygon.swift */,
+				06A0CE472A0E917B003103C8 /* CartePolygon.swift */,
+			);
+			path = Overlays;
+			sourceTree = "<group>";
+		};
+		06A0CE4B2A1222F1003103C8 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				06A0CE4C2A122391003103C8 /* Location.swift */,
+				06A0CE4E2A1223A7003103C8 /* Category.swift */,
+				06A0CE502A1223D1003103C8 /* LocationView.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		06A0CE522A124038003103C8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				06A0CE532A12403C003103C8 /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		06F9632D2A0E87DC00BDC6A8 = {
 			isa = PBXGroup;
 			children = (
 				06F963382A0E87DC00BDC6A8 /* Carte */,
 				06F963372A0E87DC00BDC6A8 /* Products */,
+				06A0CE522A124038003103C8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -52,6 +132,11 @@
 		06F963382A0E87DC00BDC6A8 /* Carte */ = {
 			isa = PBXGroup;
 			children = (
+				06A0CE4B2A1222F1003103C8 /* Location */,
+				06A0CE442A0E90AC003103C8 /* Overlays */,
+				06A0CE3D2A0E8D6D003103C8 /* Configuration */,
+				06A0CE3A2A0E8CB5003103C8 /* Annotation */,
+				06A0CE392A0E8C43003103C8 /* Carte */,
 				06F963392A0E87DC00BDC6A8 /* CarteApp.swift */,
 				06F9633B2A0E87DC00BDC6A8 /* ContentView.swift */,
 				06F9633D2A0E87DF00BDC6A8 /* Assets.xcassets */,
@@ -139,8 +224,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				069F4B2A2A12516700AA9784 /* View.swift in Sources */,
 				06F9633C2A0E87DC00BDC6A8 /* ContentView.swift in Sources */,
+				06A0CE512A1223D1003103C8 /* LocationView.swift in Sources */,
+				06A0CE3C2A0E8CDA003103C8 /* AnnotationView.swift in Sources */,
+				06A0CE4D2A122391003103C8 /* Location.swift in Sources */,
+				06A0CE432A0E8FDA003103C8 /* Coordinator.swift in Sources */,
+				06A0CE4A2A0E9444003103C8 /* Configuration.swift in Sources */,
 				06F9633A2A0E87DC00BDC6A8 /* CarteApp.swift in Sources */,
+				06A0CE482A0E917B003103C8 /* CartePolygon.swift in Sources */,
+				06A0CE3F2A0E8D98003103C8 /* Extension.swift in Sources */,
+				06A0CE462A0E90E3003103C8 /* MultiPolygon.swift in Sources */,
+				06A0CE412A0E8FCE003103C8 /* Carte.swift in Sources */,
+				06A0CE4F2A1223A7003103C8 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,7 +375,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 12.6;
@@ -287,7 +383,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Guillaume-Genest.Carte";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -317,7 +415,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 12.6;
@@ -325,7 +423,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Guillaume-Genest.Carte";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
