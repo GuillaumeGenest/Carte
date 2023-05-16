@@ -19,7 +19,7 @@ struct Location: Identifiable {
 }
 */
 
-/*
+
 class Location: Identifiable, ObservableObject, Equatable , Codable{
     @Published var id = UUID()
     @Published var name: String
@@ -83,6 +83,13 @@ class Location: Identifiable, ObservableObject, Equatable , Codable{
             try container.encode(imageURL, forKey: .imageURL)
         }
 }
-*/
+
+
+var MockedDataMapAnnotation : [Location] = [
+   Location(name: "Le Louvre", cityName: "Paris", latitude: 48.861, longitude:2.335833, description: "", category: .Musee, imageURL: ""),
+   Location(name: "Berlin", cityName: "Berlin", latitude:52.520007, longitude:13.404954, description: "", category: .Logement, imageURL: ""),
+   Location(name: "Rome", cityName: "Rome", latitude:41.902784, longitude:12.496366, description: "", category: .Bar, imageURL: "https://firebasestorage.googleapis.com/v0/b/sunny-road-2f946.appspot.com/o/user?alt=media&token=d959b262-7cdb-48d9-a720-da355b8167bc"),
+   Location(name: "Barcelone", cityName: "Barcelone", latitude:41.3850639, longitude:2.1734035, description: "", category: .Vue, imageURL: "")
+]
 
 

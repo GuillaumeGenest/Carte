@@ -10,34 +10,87 @@ import MapKit
 
 
 struct ContentView: View {
-    @State var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 48.861, longitude: 2.335833), latitudinalMeters: 20000, longitudinalMeters: 20000)
-    let annotations = [
-        Location(name: "London", coordinate: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275)),
-        Location(name: "Paris", coordinate: CLLocationCoordinate2D(latitude: 48.8567, longitude: 2.3508)),
-        Location(name: "Rome", coordinate: CLLocationCoordinate2D(latitude: 41.9, longitude: 12.5)),
-        Location(name: "Washington DC", coordinate: CLLocationCoordinate2D(latitude: 38.895111, longitude: -77.036667))
-        ]
+    @State var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 48.861, longitude: 2.335833), latitudinalMeters: 8000, longitudinalMeters: 8000)
+    
+    @State private var polylineCoordinates: [CLLocationCoordinate2D] = []
+    func createPolylineCoordinates() {
+        polylineCoordinates = MockedDataMapAnnotation.map { location in
+            CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
+            
+        }
+    }
+    init() {
+        print("tentative init")
+        createPolylineCoordinates()
+        print("AFFICHAGE -------------------------------")
+        print("\(polylineCoordinates)")
+    }
+
+    func createpolyne() -> MKPolyline{
+        var points: [CLLocationCoordinate2D] = [CLLocationCoordinate2D]()
+        for annotation in MockedDataMapAnnotation {
+            var coord = CLLocationCoordinate2D(latitude: annotation.latitude, longitude: annotation.longitude)
+            points.append(coord)
+        }
+        var polyline = MKPolyline(coordinates: &points, count: points.count)
+        return polyline
+    }
+//    let polyLine = overlay
+//    let polyLineRenderer = MKPolylineRenderer(overlay: polyLine)
+//    polyLineRenderer.strokeColor = UIColor.blue
+//    polyLineRenderer.lineWidth = 2.0
     
     
     
-    
-    
+//
+//    func createoverlay(annotations: [Location]) -> MKOverlay {
+//        var locations = annotations.map {$0.coordinate}
+//        let polyline = MKPolyline(coordinates: &locations, count: locations.count)
+//        return polyline
+//
+//
+//    }
     
     var body: some View {
         VStack {
-            
-       Carte(coordinateRegion: $region, annotationItems: annotations,
+//            Carte(coordinateRegion:  $region ,overlays: <#T##[MKOverlay]#>, overlayContent: <#T##(MKOverlay) -> MapOverlay#>)
+//            Carte(coordinateRegion: $region, overlayItems: createoverlay(annotations: annotations), overlayContent: { overlay in
+//                RendererCarteOverlay(overlay: overlay as! MKOverlay){
+//                    _, overlay in
+//                    if let polyline = overlay as? MKPolyline {
+//                        let renderer = MKPolylineRenderer(polyline: overlay)
+//                                              renderer.lineWidth = 6
+//                        renderer.strokeColor = .blue
+//                                              return renderer
+//                    }
+//
+//                }
+//            })
+                
+            Button {
+                createPolylineCoordinates()
+            } label: {
+                Image(systemName: "map")
+                    .font(.title2)
+                    .padding(10)
+                    .background(Color.primary)
+                    .clipShape(Circle())
+            }
+
+                
+                
+       Carte(coordinateRegion: $region, annotationItems: MockedDataMapAnnotation,
              annotationContent: { location in
-                 CarteAnnotation(coordinate: location.coordinate) {
+           CarteAnnotation(coordinate: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)) {
                VStack(spacing: 0) {
-                   Image(systemName: "house")
+                   Image(systemName: "")
                        .resizable()
                        .scaledToFit()
                        .frame(width: 20, height: 20)
                        .font(.headline)
                        .foregroundColor(.white)
                        .padding(6)
-                       .background(.purple)
+                       .background(Color.white)
                        .clipShape(Circle())
                    Image(systemName: "triangle.fill")
                        .resizable()
@@ -49,7 +102,36 @@ struct ContentView: View {
                        .padding(.bottom, 40)
                }
              }
-       }).ignoresSafeArea()
+       },
+             overlays: [
+                 MKPolyline(coordinates: polylineCoordinates, count: polylineCoordinates.count)
+             ],overlayContent: { overlay in
+                 RendererCarteOverlay(overlay: overlay) { _, overlay in
+                     
+                     if let polyline = overlay as? MKPolyline {
+                                           let renderer = MKPolylineRenderer(polyline: polyline)
+                                           renderer.lineWidth = 4
+                         renderer.lineCap = .butt
+                         renderer.lineJoin = .miter
+                         renderer.miterLimit = 0
+                         renderer.lineDashPhase = 0
+                         renderer.lineDashPattern = [10,5]
+                         
+                                            renderer.strokeColor = .orange
+                                           return renderer
+                    } else {
+                                           assertionFailure("Unknown overlay type found.")
+                                            print("Probleme overlay")
+                                           return MKOverlayRenderer(overlay: overlay)
+                     
+                     
+                     
+                     
+            
+                         }
+                     }
+                 }
+       ).ignoresSafeArea()
         }
     }
 }
@@ -58,12 +140,4 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
-}
-
-
-
-struct Location: Identifiable {
-    let id = UUID()
-    let name: String
-    let coordinate: CLLocationCoordinate2D
 }

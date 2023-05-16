@@ -58,8 +58,8 @@ extension Carte {
         private var annotationItemByObject = [ObjectIdentifier: AnnotationItems.Element]()
         private var annotationContentByID = [AnnotationItems.Element.ID: MapAnnotation]()
 
-//        private var overlayContentByObject = [ObjectIdentifier: MapOverlay]()
-//        private var overlayContentByID = [OverlayItems.Element.ID: MapOverlay]()
+        private var overlayContentByObject = [ObjectIdentifier: MapOverlay]()
+        private var overlayContentByID = [OverlayItems.Element.ID: MapOverlay]()
 
         private var previousBoundary: MKMapView.CameraBoundary?
         private var previousZoomRange: MKMapView.CameraZoomRange?
@@ -195,43 +195,43 @@ extension Carte {
         }
 
         private func updateOverlays(on mapView: MKMapView, from previousView: Carte?, to newView: Carte) {
-//            let changes: CollectionDifference<OverlayItems.Element>
-//            if let previousView = previousView {
-//                changes = newView.overlayItems.difference(from: previousView.overlayItems) { $0.id == $1.id }
-//            } else {
-//                changes = newView.overlayItems.difference(from: []) { $0.id == $1.id }
-//            }
-//
-//            for change in changes {
-//                switch change {
-//                case let .insert(index, item, _):
-//                    guard !overlayContentByID.keys.contains(item.id) else {
-//                        assertionFailure("Duplicate overlay item id \(item.id) of \(item) found.")
-//                        continue
-//                    }
-//                    let content = newView.overlayContent(item)
-//                    let objectKey = ObjectIdentifier(content.overlay)
-//                    guard !overlayContentByObject.keys.contains(objectKey) else {
-//                        assertionFailure("Duplicate overlay for content \(content) found!")
-//                        continue
-//                    }
-//                    overlayContentByObject[objectKey] = content
-//                    overlayContentByID[item.id] = content
-//                    if let level = content.level {
-//                        mapView.insertOverlay(content.overlay, at: index, level: level)
-//                    } else {
-//                        mapView.insertOverlay(content.overlay, at: index)
-//                    }
-//                case let .remove(_, item, _):
-//                    guard let content = overlayContentByID[item.id] else {
-//                        assertionFailure("Missing overlay content for item \(item) encountered.")
-//                        continue
-//                    }
-//                    overlayContentByObject.removeValue(forKey: ObjectIdentifier(content.overlay))
-//                    overlayContentByID.removeValue(forKey: item.id)
-//                    mapView.removeOverlay(content.overlay)
-//                }
-//            }
+            let changes: CollectionDifference<OverlayItems.Element>
+            if let previousView = previousView {
+                changes = newView.overlayItems.difference(from: previousView.overlayItems) { $0.id == $1.id }
+            } else {
+                changes = newView.overlayItems.difference(from: []) { $0.id == $1.id }
+            }
+
+            for change in changes {
+                switch change {
+                case let .insert(index, item, _):
+                    guard !overlayContentByID.keys.contains(item.id) else {
+                        assertionFailure("Duplicate overlay item id \(item.id) of \(item) found.")
+                        continue
+                    }
+                    let content = newView.overlayContent(item)
+                    let objectKey = ObjectIdentifier(content.overlay)
+                    guard !overlayContentByObject.keys.contains(objectKey) else {
+                        assertionFailure("Duplicate overlay for content \(content) found!")
+                        continue
+                    }
+                    overlayContentByObject[objectKey] = content
+                    overlayContentByID[item.id] = content
+                    if let level = content.level {
+                        mapView.insertOverlay(content.overlay, at: index, level: level)
+                    } else {
+                        mapView.insertOverlay(content.overlay, at: index)
+                    }
+                case let .remove(_, item, _):
+                    guard let content = overlayContentByID[item.id] else {
+                        assertionFailure("Missing overlay content for item \(item) encountered.")
+                        continue
+                    }
+                    overlayContentByObject.removeValue(forKey: ObjectIdentifier(content.overlay))
+                    overlayContentByID.removeValue(forKey: item.id)
+                    mapView.removeOverlay(content.overlay)
+                }
+            }
             }
 
         private func updatePointOfInterestFilter(on mapView: MKMapView, from previousView: Carte?, to newView: Carte) {
@@ -325,13 +325,13 @@ extension Carte {
             }
         }
 
-//        public func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-//            guard let content = overlayContentByObject[ObjectIdentifier(overlay)] else {
-//                assertionFailure("Somehow an unknown overlay appeared.")
-//                return MKOverlayRenderer(overlay: overlay)
-//            }
-//            return content.renderer(for: mapView)
-//        }
+        public func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+           guard let content = overlayContentByObject[ObjectIdentifier(overlay)] else {
+               assertionFailure("Somehow an unknown overlay appeared.")
+                return MKOverlayRenderer(overlay: overlay)
+            }
+            return content.renderer(for: mapView)
+        }
 
         public func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
             if let content = annotationContentByObject[ObjectIdentifier(annotation)] {
