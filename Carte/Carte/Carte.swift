@@ -1,4 +1,10 @@
 
+//
+//  View.swift
+//  Carte
+//
+//  Created by Guillaume Genest on 15/05/2023.
+//
 
 import MapKit
 import SwiftUI
@@ -6,14 +12,13 @@ import SwiftUI
 public struct Carte<AnnotationItems: RandomAccessCollection, OverlayItems: RandomAccessCollection>
     where AnnotationItems.Element: Identifiable, OverlayItems.Element: Identifiable {
 
-    // MARK: Stored Properties
 
     @Binding var coordinateRegion: MKCoordinateRegion
     @Binding var mapRect: MKMapRect
 
     let usesRegion: Bool
 
-    let mapType: MKMapType
+    let mapType: MKMapConfiguration
     let pointOfInterestFilter: MKPointOfInterestFilter?
 
     let informationVisibility: MapInformationVisibility
@@ -38,7 +43,7 @@ extension Carte {
 
     public init(
         coordinateRegion: Binding<MKCoordinateRegion>,
-        type mapType: MKMapType = .standard,
+        type mapType: MKMapConfiguration = MKStandardMapConfiguration(),
         pointOfInterestFilter: MKPointOfInterestFilter? = nil,
         informationVisibility: MapInformationVisibility = .default,
         interactionModes: MapInteractionModes = .all,
@@ -72,7 +77,7 @@ extension Carte {
 
     public init(
         mapRect: Binding<MKMapRect>,
-        type mapType: MKMapType = .standard,
+        type mapType: MKMapConfiguration = MKStandardMapConfiguration(),
         pointOfInterestFilter: MKPointOfInterestFilter? = nil,
         informationVisibility: MapInformationVisibility = .default,
         interactionModes: MapInteractionModes = .all,
@@ -119,7 +124,7 @@ extension Carte where AnnotationItems == [IdentifiableObject<MKAnnotation>] {
 
     public init(
         coordinateRegion: Binding<MKCoordinateRegion>,
-        type mapType: MKMapType = .standard,
+        type mapType: MKMapConfiguration = MKStandardMapConfiguration(),
         pointOfInterestFilter: MKPointOfInterestFilter? = nil,
         informationVisibility: MapInformationVisibility = .default,
         interactionModes: MapInteractionModes = .all,
@@ -150,7 +155,7 @@ extension Carte where AnnotationItems == [IdentifiableObject<MKAnnotation>] {
 
     public init(
         mapRect: Binding<MKMapRect>,
-        type mapType: MKMapType = .standard,
+        type mapType: MKMapConfiguration = MKStandardMapConfiguration(),
         pointOfInterestFilter: MKPointOfInterestFilter? = nil,
         informationVisibility: MapInformationVisibility = .default,
         interactionModes: MapInteractionModes = .all,
@@ -193,7 +198,7 @@ extension Carte where OverlayItems == [IdentifiableObject<MKOverlay>] {
 
     public init(
         coordinateRegion: Binding<MKCoordinateRegion>,
-        type mapType: MKMapType = .standard,
+        type mapType: MKMapConfiguration = MKStandardMapConfiguration(),
         pointOfInterestFilter: MKPointOfInterestFilter? = nil,
         informationVisibility: MapInformationVisibility = .default,
         interactionModes: MapInteractionModes = .all,
@@ -226,7 +231,7 @@ extension Carte where OverlayItems == [IdentifiableObject<MKOverlay>] {
 
     public init(
         mapRect: Binding<MKMapRect>,
-        type mapType: MKMapType = .standard,
+        type mapType: MKMapConfiguration = MKStandardMapConfiguration(),
         pointOfInterestFilter: MKPointOfInterestFilter? = nil,
         informationVisibility: MapInformationVisibility = .default,
         interactionModes: MapInteractionModes = .all,
@@ -273,7 +278,7 @@ extension Carte
 
     public init(
         coordinateRegion: Binding<MKCoordinateRegion>,
-        type mapType: MKMapType = .standard,
+        type mapType: MKMapConfiguration = MKStandardMapConfiguration(),
         pointOfInterestFilter: MKPointOfInterestFilter? = nil,
         informationVisibility: MapInformationVisibility = .default,
         interactionModes: MapInteractionModes = .all,
@@ -309,7 +314,7 @@ extension Carte
 
     public init(
         mapRect: Binding<MKMapRect>,
-        type mapType: MKMapType = .standard,
+        type mapType: MKMapConfiguration = MKStandardMapConfiguration(),
         pointOfInterestFilter: MKPointOfInterestFilter? = nil,
         informationVisibility: MapInformationVisibility = .default,
         interactionModes: MapInteractionModes = .all,

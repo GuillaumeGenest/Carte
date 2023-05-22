@@ -302,12 +302,7 @@ extension MapUserTrackingButton: UIViewRepresentable {
 
 #endif
 
-//
-//  MapZoomControl.swift
-//  Map
-//
-//  Created by Paul Kraft on 26.04.22.
-//
+
 
 #if os(macOS) || targetEnvironment(macCatalyst)
 

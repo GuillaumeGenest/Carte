@@ -1,29 +1,13 @@
 //
-//  Map+Coordinator.swift
-//  Map
+//  View.swift
+//  Carte
 //
-//  Created by Paul Kraft on 23.04.22.
+//  Created by Guillaume Genest on 15/05/2023.
 //
 
 import MapKit
 import SwiftUI
-
-
-
-
-
-//
-//  Map+UIKit.swift
-//  Map
-//
-//  Created by Paul Kraft on 25.04.22.
-//
-
-#if canImport(UIKit) && !os(watchOS)
-
-import MapKit
 import UIKit
-import SwiftUI
 
 extension Carte: UIViewRepresentable {
 
@@ -40,17 +24,10 @@ extension Carte: UIViewRepresentable {
 
 }
 
-#endif
-
-#if !os(watchOS)
 
 extension Carte {
 
-    // MARK: Nested Types
-
     public class Coordinator: NSObject, MKMapViewDelegate {
-
-        // MARK: Stored Properties
 
         private var view: Carte?
 
@@ -87,7 +64,7 @@ extension Carte {
             updateInteractionModes(on: mapView, from: view, to: newView)
             updateOverlays(on: mapView, from: view, to: newView)
             updatePointOfInterestFilter(on: mapView, from: view, to: newView)
-            updateRegion(on: mapView, from: view, to: newView, animated: animation != nil)
+            //updateRegion(on: mapView, from: view, to: newView, animated: animation != nil)
             updateType(on: mapView, from: view, to: newView)
             updateUserTracking(on: mapView, from: view, to: newView)
 
@@ -96,7 +73,6 @@ extension Carte {
             }
         }
 
-        // MARK: Helpers
 
         private func registerAnnotationViewIfNeeded(on mapView: MKMapView, for content: MapAnnotation) {
             let contentType = type(of: content)
@@ -268,17 +244,20 @@ extension Carte {
 
         private func updateType(on mapView: MKMapView, from previousView: Carte?, to newView: Carte) {
             if previousView?.mapType != newView.mapType {
-                mapView.mapType = newView.mapType
+                mapView.preferredConfiguration = newView.mapType
             }
         }
 
         private func updateUserTracking(on mapView: MKMapView, from previousView: Carte?, to newView: Carte) {
-            if #available(macOS 11, *) {
                 let newTrackingMode = newView.userTrackingMode.actualValue
                 if newView.usesUserTrackingMode, mapView.userTrackingMode != newTrackingMode {
                     mapView.userTrackingMode = newTrackingMode
                 }
-            }
+        }
+        
+        
+        func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+            print(error.localizedDescription)
         }
 
         // MARK: MKMapViewDelegate
@@ -291,7 +270,11 @@ extension Carte {
             view?.mapRect = mapView.visibleMapRect
         }
 
-        @available(macOS 11, *)
+        
+        
+        func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        }
+
         public func mapView(_ mapView: MKMapView, didChange mode: MKUserTrackingMode, animated: Bool) {
             guard let view = view, view.usesUserTrackingMode else {
                 return
@@ -360,7 +343,6 @@ extension Carte {
 
     }
 
-    // MARK: Methods
 
     public func makeCoordinator() -> Coordinator {
         Coordinator()
@@ -368,4 +350,3 @@ extension Carte {
 
 }
 
-#endif

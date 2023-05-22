@@ -11,84 +11,28 @@ import MapKit
 
 struct ContentView: View {
     @State var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 48.861, longitude: 2.335833), latitudinalMeters: 8000, longitudinalMeters: 8000)
-    
+    @State private var annotationsIndex = 0
+
     @State private var polylineCoordinates: [CLLocationCoordinate2D] = []
+    @State private var userTrackingMode = UserTrackingMode.follow
+    
     func createPolylineCoordinates() {
         polylineCoordinates = MockedDataMapAnnotation.map { location in
             CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
-            
         }
     }
-    init() {
-        print("tentative init")
-        createPolylineCoordinates()
-        print("AFFICHAGE -------------------------------")
-        print("\(polylineCoordinates)")
-    }
-
-    func createpolyne() -> MKPolyline{
-        var points: [CLLocationCoordinate2D] = [CLLocationCoordinate2D]()
-        for annotation in MockedDataMapAnnotation {
-            var coord = CLLocationCoordinate2D(latitude: annotation.latitude, longitude: annotation.longitude)
-            points.append(coord)
-        }
-        var polyline = MKPolyline(coordinates: &points, count: points.count)
-        return polyline
-    }
-//    let polyLine = overlay
-//    let polyLineRenderer = MKPolylineRenderer(overlay: polyLine)
-//    polyLineRenderer.strokeColor = UIColor.blue
-//    polyLineRenderer.lineWidth = 2.0
-    
-    
-    
-//
-//    func createoverlay(annotations: [Location]) -> MKOverlay {
-//        var locations = annotations.map {$0.coordinate}
-//        let polyline = MKPolyline(coordinates: &locations, count: locations.count)
-//        return polyline
-//
-//
-//    }
-    
     var body: some View {
-        VStack {
-//            Carte(coordinateRegion:  $region ,overlays: <#T##[MKOverlay]#>, overlayContent: <#T##(MKOverlay) -> MapOverlay#>)
-//            Carte(coordinateRegion: $region, overlayItems: createoverlay(annotations: annotations), overlayContent: { overlay in
-//                RendererCarteOverlay(overlay: overlay as! MKOverlay){
-//                    _, overlay in
-//                    if let polyline = overlay as? MKPolyline {
-//                        let renderer = MKPolylineRenderer(polyline: overlay)
-//                                              renderer.lineWidth = 6
-//                        renderer.strokeColor = .blue
-//                                              return renderer
-//                    }
-//
-//                }
-//            })
-                
-            Button {
-                createPolylineCoordinates()
-            } label: {
-                Image(systemName: "map")
-                    .font(.title2)
-                    .padding(10)
-                    .background(Color.primary)
-                    .clipShape(Circle())
-            }
-
-                
-                
-       Carte(coordinateRegion: $region, annotationItems: MockedDataMapAnnotation,
+        ZStack {
+            Carte(coordinateRegion: $region ,type: MKStandardMapConfiguration(), userTrackingMode: $userTrackingMode ,annotationItems: MockedDataMapAnnotation,
              annotationContent: { location in
            CarteAnnotation(coordinate: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)) {
                VStack(spacing: 0) {
-                   Image(systemName: "")
+                   Image(systemName: "map")
                        .resizable()
                        .scaledToFit()
-                       .frame(width: 20, height: 20)
+                       .frame(width: 15, height: 15)
                        .font(.headline)
-                       .foregroundColor(.white)
+                       .foregroundColor(Color.black)
                        .padding(6)
                        .background(Color.white)
                        .clipShape(Circle())
@@ -108,33 +52,45 @@ struct ContentView: View {
              ],overlayContent: { overlay in
                  RendererCarteOverlay(overlay: overlay) { _, overlay in
                      
-                     if let polyline = overlay as? MKPolyline {
-                                           let renderer = MKPolylineRenderer(polyline: polyline)
-                                           renderer.lineWidth = 4
-                         renderer.lineCap = .butt
-                         renderer.lineJoin = .miter
-                         renderer.miterLimit = 0
-                         renderer.lineDashPhase = 0
-                         renderer.lineDashPattern = [10,5]
-                         
-                                            renderer.strokeColor = .orange
-                                           return renderer
+                    if let polyline = overlay as? MKPolyline {
+                        let renderer = MKPolylineRenderer(polyline: polyline)
+                        renderer.lineWidth = 2
+                        renderer.lineCap = .butt
+                        renderer.lineJoin = .miter
+                        renderer.miterLimit = 0
+                        renderer.lineDashPhase = 0
+                        renderer.lineDashPattern = [10,5]
+                        renderer.strokeColor = .orange
+                        return renderer
                     } else {
-                                           assertionFailure("Unknown overlay type found.")
-                                            print("Probleme overlay")
-                                           return MKOverlayRenderer(overlay: overlay)
-                     
-                     
-                     
-                     
-            
-                         }
-                     }
-                 }
-       ).ignoresSafeArea()
+                         assertionFailure("Unknown overlay type found.")
+                         print("Probleme overlay")
+                         return MKOverlayRenderer(overlay: overlay)
+                    }
+                }
+            }
+       ).edgesIgnoringSafeArea(.all)
+            Spacer()
+            HStack{
+                Spacer()
+                VStack{
+                    Button {
+                        createPolylineCoordinates()
+                    } label: {
+                        Image(systemName: "map")
+                            .font(.title2)
+                            .padding(10)
+                            .background(Color.primary)
+                            .clipShape(Circle())
+                    }
+                    
+                }.frame(maxWidth: .infinity, alignment: .trailing)
+                    .padding()
+            }
         }
     }
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
