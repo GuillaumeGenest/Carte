@@ -19,6 +19,9 @@
 		06A0CE4F2A1223A7003103C8 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A0CE4E2A1223A7003103C8 /* Category.swift */; };
 		06A0CE512A1223D1003103C8 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A0CE502A1223D1003103C8 /* LocationView.swift */; };
 		06A0CE542A12403E003103C8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A0CE532A12403C003103C8 /* MapKit.framework */; };
+		06D2E6642A1B6D9F00987A2D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 06D2E6632A1B6D9F00987A2D /* README.md */; };
+		06D2E6692A1BB9AD00987A2D /* SearchPointOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D2E6682A1BB9AD00987A2D /* SearchPointOfInterest.swift */; };
+		06D2E66B2A1BBCB900987A2D /* MKPointOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D2E66A2A1BBCB900987A2D /* MKPointOfInterest.swift */; };
 		06F9633A2A0E87DC00BDC6A8 /* CarteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F963392A0E87DC00BDC6A8 /* CarteApp.swift */; };
 		06F9633C2A0E87DC00BDC6A8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F9633B2A0E87DC00BDC6A8 /* ContentView.swift */; };
 		06F9633E2A0E87DF00BDC6A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06F9633D2A0E87DF00BDC6A8 /* Assets.xcassets */; };
@@ -38,6 +41,9 @@
 		06A0CE4E2A1223A7003103C8 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		06A0CE502A1223D1003103C8 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		06A0CE532A12403C003103C8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS16.2.sdk/System/Library/Frameworks/MapKit.framework; sourceTree = DEVELOPER_DIR; };
+		06D2E6632A1B6D9F00987A2D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		06D2E6682A1BB9AD00987A2D /* SearchPointOfInterest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPointOfInterest.swift; sourceTree = "<group>"; };
+		06D2E66A2A1BBCB900987A2D /* MKPointOfInterest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKPointOfInterest.swift; sourceTree = "<group>"; };
 		06F963362A0E87DC00BDC6A8 /* Carte.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Carte.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06F963392A0E87DC00BDC6A8 /* CarteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarteApp.swift; sourceTree = "<group>"; };
 		06F9633B2A0E87DC00BDC6A8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -112,9 +118,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		06D2E6672A1BB97A00987A2D /* PointOfInterest */ = {
+			isa = PBXGroup;
+			children = (
+				06D2E6682A1BB9AD00987A2D /* SearchPointOfInterest.swift */,
+				06D2E66A2A1BBCB900987A2D /* MKPointOfInterest.swift */,
+			);
+			path = PointOfInterest;
+			sourceTree = "<group>";
+		};
 		06F9632D2A0E87DC00BDC6A8 = {
 			isa = PBXGroup;
 			children = (
+				06D2E6632A1B6D9F00987A2D /* README.md */,
 				06F963382A0E87DC00BDC6A8 /* Carte */,
 				06F963372A0E87DC00BDC6A8 /* Products */,
 				06A0CE522A124038003103C8 /* Frameworks */,
@@ -132,6 +148,7 @@
 		06F963382A0E87DC00BDC6A8 /* Carte */ = {
 			isa = PBXGroup;
 			children = (
+				06D2E6672A1BB97A00987A2D /* PointOfInterest */,
 				06A0CE4B2A1222F1003103C8 /* Location */,
 				06A0CE442A0E90AC003103C8 /* Overlays */,
 				06A0CE3D2A0E8D6D003103C8 /* Configuration */,
@@ -212,6 +229,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06D2E6642A1B6D9F00987A2D /* README.md in Resources */,
 				06F963422A0E87DF00BDC6A8 /* Preview Assets.xcassets in Resources */,
 				06F9633E2A0E87DF00BDC6A8 /* Assets.xcassets in Resources */,
 			);
@@ -233,8 +251,10 @@
 				06A0CE4A2A0E9444003103C8 /* Configuration.swift in Sources */,
 				06F9633A2A0E87DC00BDC6A8 /* CarteApp.swift in Sources */,
 				06A0CE482A0E917B003103C8 /* CartePolygon.swift in Sources */,
+				06D2E6692A1BB9AD00987A2D /* SearchPointOfInterest.swift in Sources */,
 				06A0CE3F2A0E8D98003103C8 /* Extension.swift in Sources */,
 				06A0CE462A0E90E3003103C8 /* MultiPolygon.swift in Sources */,
+				06D2E66B2A1BBCB900987A2D /* MKPointOfInterest.swift in Sources */,
 				06A0CE412A0E8FCE003103C8 /* Carte.swift in Sources */,
 				06A0CE4F2A1223A7003103C8 /* Category.swift in Sources */,
 			);
