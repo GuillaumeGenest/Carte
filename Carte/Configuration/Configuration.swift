@@ -227,8 +227,8 @@ public enum UserTrackingMode {
 }
 
 
-public typealias MapAnnotationBuilder = SingleValueBuilder<MapAnnotation>
-public typealias OptionalMapAnnotationBuilder = SingleValueBuilder<MapAnnotation?>
+public typealias MapAnnotationBuilder = SingleValueBuilder<CarteAnnotationProtocol>
+public typealias OptionalMapAnnotationBuilder = SingleValueBuilder<CarteAnnotationProtocol?>
 
 #if !os(watchOS)
 public typealias MapOverlayBuilder = SingleValueBuilder<MapOverlay>

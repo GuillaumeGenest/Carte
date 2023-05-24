@@ -11,10 +11,13 @@ import MapKit
 
 struct ContentView: View {
     @StateObject var search = SearchPointOfInterest()
-    
-    
+    @State var ShowDetailPlaceAnnotation : MKMapItem?
     @State var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 48.861, longitude: 2.335833), latitudinalMeters: 8000, longitudinalMeters: 8000)
-    @State private var annotationsIndex = 0
+    
+    
+    
+    
+    @State private var ShowInformationMapItem : Bool = false
     @State private var ShowListPointOfInterest : Bool = false
     @State private var ShowPointOfInterestMarker : Bool = false
     @State private var pointsOfInterest: [MKMapFeatureAnnotation] = []
@@ -28,19 +31,55 @@ struct ContentView: View {
         }
     }
     var body: some View {
-        ZStack {
-            
-            if ShowPointOfInterestMarker == true {
-                Map(coordinateRegion: $region, annotationItems: search.places)
-                { place in
-                    MapMarker(coordinate: place.mapItem.placemark.coordinate,
-                           tint: Color.purple)
+        
+        if ShowPointOfInterestMarker == true {
+            ZStack{
+                Map(coordinateRegion: $region,interactionModes: .all,
+                    userTrackingMode: .none,
+                    annotationItems: search.places,
+                    annotationContent: { location in
+                    MapAnnotation(coordinate: location.mapItem.placemark.coordinate){
+                        VStack(spacing: 0) {
+                            Image(systemName: "mappin")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 12, height: 12)
+                                .font(.headline)
+                                .foregroundColor(Color.white)
+                                .padding(6)
+                                .background(Color.purple)
+                                .clipShape(Circle())
+                            Image(systemName: "triangle.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .foregroundColor(Color.purple)
+                                .frame(width: 8, height: 8)
+                                .rotationEffect(Angle(degrees: 180))
+                                .offset(y: -2.5)
+                                .padding(.bottom, 40)
+                        }
+                        .onTapGesture {
+                            self.ShowDetailPlaceAnnotation = location.mapItem
+                            ShowInformationMapItem.toggle()
+                            
+                        }
+                    }
+                }).edgesIgnoringSafeArea(.all)
+                
+                if ShowInformationMapItem == true {
+                    
+                    VStack{
+                        Spacer()
+                        InformationMapItem(place: self.ShowDetailPlaceAnnotation!)
+                    }
                 }
-            }else {
-                
-                
-                
-                
+            }
+        }else {
+            
+            VStack{
+                Text("Mon trip")
+            }
+            ZStack{
                 Carte(coordinateRegion: $region ,type: MKStandardMapConfiguration(), userTrackingMode: $userTrackingMode ,annotationItems: MockedDataMapAnnotation,
                       annotationContent: { location in
                     CarteAnnotation(coordinate: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)) {
@@ -64,9 +103,8 @@ struct ContentView: View {
                                 .padding(.bottom, 40)
                         }
                     }
-                },
-                      overlays: [
-                        MKPolyline(coordinates: polylineCoordinates, count: polylineCoordinates.count)
+                },overlays: [
+                    MKPolyline(coordinates: polylineCoordinates, count: polylineCoordinates.count)
                       ],overlayContent: { overlay in
                           RendererCarteOverlay(overlay: overlay) { _, overlay in
                               
@@ -88,49 +126,66 @@ struct ContentView: View {
                           }
                       }
                 ).edgesIgnoringSafeArea(.all)
-            }
-            Spacer()
-            HStack{
                 Spacer()
-                VStack{
-                    Button {
-                        createPolylineCoordinates()
-                    } label: {
-                        Image(systemName: "map")
-                            .font(.title2)
-                            .padding(10)
-                            .background(Color.primary)
-                            .clipShape(Circle())
-                    }
-                    Button {
-                        search.searchMuseums()
-                        ShowListPointOfInterest.toggle()
-                    } label: {
-                        Image(systemName: "info")
-                            .font(.title2)
-                            .padding(10)
-                            .background(Color.primary)
-                            .clipShape(Circle())
-                    }
-                    
-                    
-                    
-                    
-                }.frame(maxWidth: .infinity, alignment: .trailing)
-                    .padding()
-            }.sheet(isPresented: $ShowListPointOfInterest){
+                HStack{
+                    Spacer()
+                    VStack{
+                        Button {
+                            createPolylineCoordinates()
+                        } label: {
+                            Image(systemName: "map")
+                                .font(.title2)
+                                .padding(10)
+                                .background(Color.primary)
+                                .clipShape(Circle())
+                        }
+                        Button {
+                            search.searchMuseums()
+                            ShowListPointOfInterest.toggle()
+                        } label: {
+                            Image(systemName: "info")
+                                .font(.title2)
+                                .padding(10)
+                                .background(Color.primary)
+                                .clipShape(Circle())
+                        }
+
+                    }.frame(maxWidth: .infinity, alignment: .trailing)
+                        .padding()
+                }
+            }
+            .sheet(isPresented: $ShowListPointOfInterest){
                 PointOfInterestListView(show: $ShowPointOfInterestMarker, dismiss: $ShowListPointOfInterest, pointofinterest: search.places)
             }
+            
+            
+            
+            
+            
         }
     }
 }
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
 }
+
+struct InformationMapItem: View {
+    var place : MKMapItem
+    
+    var body: some View{
+        VStack{
+            Text(place.name ?? "")
+            Text(place.placemark.thoroughfare ?? "")
+        }.background(Color.white)
+    }
+}
+
+
+
+
 
 
 struct PointOfInterestListView : View {

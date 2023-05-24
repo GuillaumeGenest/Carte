@@ -28,8 +28,8 @@ public struct Carte<AnnotationItems: RandomAccessCollection, OverlayItems: Rando
     @Binding var userTrackingMode: UserTrackingMode
 
     let annotationItems: AnnotationItems
-    let annotationContent: (AnnotationItems.Element) -> MapAnnotation
-    let clusterAnnotation: (MKClusterAnnotation, [AnnotationItems.Element]) -> MapAnnotation?
+    let annotationContent: (AnnotationItems.Element) -> CarteAnnotationProtocol
+    let clusterAnnotation: (MKClusterAnnotation, [AnnotationItems.Element]) -> CarteAnnotationProtocol?
 
     let overlayItems: OverlayItems
     let overlayContent: (OverlayItems.Element) -> MapOverlay
@@ -49,8 +49,8 @@ extension Carte {
         interactionModes: MapInteractionModes = .all,
         userTrackingMode: Binding<UserTrackingMode>? = nil,
         annotationItems: AnnotationItems,
-        @MapAnnotationBuilder annotationContent: @escaping (AnnotationItems.Element) -> MapAnnotation,
-        @OptionalMapAnnotationBuilder clusterAnnotation: @escaping (MKClusterAnnotation, [AnnotationItems.Element]) -> MapAnnotation? = { _, _ in nil },
+        @MapAnnotationBuilder annotationContent: @escaping (AnnotationItems.Element) -> CarteAnnotationProtocol,
+        @OptionalMapAnnotationBuilder clusterAnnotation: @escaping (MKClusterAnnotation, [AnnotationItems.Element]) -> CarteAnnotationProtocol? = { _, _ in nil },
         overlayItems: OverlayItems,
         @MapOverlayBuilder overlayContent: @escaping (OverlayItems.Element) -> MapOverlay
     ) {
@@ -83,8 +83,8 @@ extension Carte {
         interactionModes: MapInteractionModes = .all,
         userTrackingMode: Binding<UserTrackingMode>? = nil,
         annotationItems: AnnotationItems,
-        @MapAnnotationBuilder annotationContent: @escaping (AnnotationItems.Element) -> MapAnnotation,
-        @OptionalMapAnnotationBuilder clusterAnnotation: @escaping (MKClusterAnnotation, [AnnotationItems.Element]) -> MapAnnotation? = { _, _ in nil },
+        @MapAnnotationBuilder annotationContent: @escaping (AnnotationItems.Element) -> CarteAnnotationProtocol,
+        @OptionalMapAnnotationBuilder clusterAnnotation: @escaping (MKClusterAnnotation, [AnnotationItems.Element]) -> CarteAnnotationProtocol? = { _, _ in nil },
         overlayItems: OverlayItems,
         @MapOverlayBuilder overlayContent: @escaping (OverlayItems.Element) -> MapOverlay
     ) {
@@ -130,11 +130,11 @@ extension Carte where AnnotationItems == [IdentifiableObject<MKAnnotation>] {
         interactionModes: MapInteractionModes = .all,
         userTrackingMode: Binding<UserTrackingMode>? = nil,
         annotations: [MKAnnotation] = [],
-        @MapAnnotationBuilder annotationContent: @escaping (MKAnnotation) -> MapAnnotation = { annotation in
+        @MapAnnotationBuilder annotationContent: @escaping (MKAnnotation) -> CarteAnnotationProtocol = { annotation in
             assertionFailure("Please provide an `annotationContent` closure for the values in `annotations`.")
             return CarteAnnotation(annotation: annotation) {}
         },
-        @OptionalMapAnnotationBuilder clusterAnnotation: @escaping (MKClusterAnnotation) -> MapAnnotation? = { _ in nil },
+        @OptionalMapAnnotationBuilder clusterAnnotation: @escaping (MKClusterAnnotation) -> CarteAnnotationProtocol? = { _ in nil },
         overlayItems: OverlayItems,
         @MapOverlayBuilder overlayContent: @escaping (OverlayItems.Element) -> MapOverlay
     ) {
@@ -161,11 +161,11 @@ extension Carte where AnnotationItems == [IdentifiableObject<MKAnnotation>] {
         interactionModes: MapInteractionModes = .all,
         userTrackingMode: Binding<UserTrackingMode>? = nil,
         annotations: [MKAnnotation] = [],
-        @MapAnnotationBuilder annotationContent: @escaping (MKAnnotation) -> MapAnnotation = { annotation in
+        @MapAnnotationBuilder annotationContent: @escaping (MKAnnotation) -> CarteAnnotationProtocol = { annotation in
             assertionFailure("Please provide an `annotationContent` closure for the values in `annotations`.")
             return CarteAnnotation(annotation: annotation) {}
         },
-        @OptionalMapAnnotationBuilder clusterAnnotation: @escaping (MKClusterAnnotation) -> MapAnnotation? = { _ in nil },
+        @OptionalMapAnnotationBuilder clusterAnnotation: @escaping (MKClusterAnnotation) -> CarteAnnotationProtocol? = { _ in nil },
         overlayItems: OverlayItems,
         @MapOverlayBuilder overlayContent: @escaping (OverlayItems.Element) -> MapOverlay
     ) {
@@ -204,8 +204,8 @@ extension Carte where OverlayItems == [IdentifiableObject<MKOverlay>] {
         interactionModes: MapInteractionModes = .all,
         userTrackingMode: Binding<UserTrackingMode>? = nil,
         annotationItems: AnnotationItems,
-        @MapAnnotationBuilder annotationContent: @escaping (AnnotationItems.Element) -> MapAnnotation,
-        @OptionalMapAnnotationBuilder clusterAnnotation: @escaping (MKClusterAnnotation, [AnnotationItems.Element]) -> MapAnnotation? = { _, _ in nil },
+        @MapAnnotationBuilder annotationContent: @escaping (AnnotationItems.Element) -> CarteAnnotationProtocol,
+        @OptionalMapAnnotationBuilder clusterAnnotation: @escaping (MKClusterAnnotation, [AnnotationItems.Element]) -> CarteAnnotationProtocol? = { _, _ in nil },
         overlays: [MKOverlay] = [],
         @MapOverlayBuilder overlayContent: @escaping (MKOverlay) -> MapOverlay = { overlay in
             assertionFailure("Please provide an `overlayContent` closure for the values in `overlays`.")
@@ -237,8 +237,8 @@ extension Carte where OverlayItems == [IdentifiableObject<MKOverlay>] {
         interactionModes: MapInteractionModes = .all,
         userTrackingMode: Binding<UserTrackingMode>? = nil,
         annotationItems: AnnotationItems,
-        @MapAnnotationBuilder annotationContent: @escaping (AnnotationItems.Element) -> MapAnnotation,
-        @OptionalMapAnnotationBuilder clusterAnnotation: @escaping (MKClusterAnnotation, [AnnotationItems.Element]) -> MapAnnotation? = { _, _ in nil },
+        @MapAnnotationBuilder annotationContent: @escaping (AnnotationItems.Element) -> CarteAnnotationProtocol,
+        @OptionalMapAnnotationBuilder clusterAnnotation: @escaping (MKClusterAnnotation, [AnnotationItems.Element]) -> CarteAnnotationProtocol? = { _, _ in nil },
         overlays: [MKOverlay] = [],
         @MapOverlayBuilder overlayContent: @escaping (MKOverlay) -> MapOverlay = { overlay in
             assertionFailure("Please provide an `overlayContent` closure for the values in `overlays`.")
@@ -284,11 +284,11 @@ extension Carte
         interactionModes: MapInteractionModes = .all,
         userTrackingMode: Binding<UserTrackingMode>? = nil,
         annotations: [MKAnnotation] = [],
-        @MapAnnotationBuilder annotationContent: @escaping (MKAnnotation) -> MapAnnotation = { annotation in
+        @MapAnnotationBuilder annotationContent: @escaping (MKAnnotation) -> CarteAnnotationProtocol = { annotation in
             assertionFailure("Please provide an `annotationContent` closure for the values in `annotations`.")
             return CarteAnnotation(annotation: annotation) {}
         },
-        @MapAnnotationBuilder clusterAnnotation: @escaping (MKClusterAnnotation) -> MapAnnotation? = { _ in nil },
+        @MapAnnotationBuilder clusterAnnotation: @escaping (MKClusterAnnotation) -> CarteAnnotationProtocol? = { _ in nil },
         overlays: [MKOverlay] = [],
         @MapOverlayBuilder overlayContent: @escaping (MKOverlay) -> MapOverlay = { overlay in
             assertionFailure("Please provide an `overlayContent` closure for the values in `overlays`.")
@@ -320,11 +320,11 @@ extension Carte
         interactionModes: MapInteractionModes = .all,
         userTrackingMode: Binding<UserTrackingMode>? = nil,
         annotations: [MKAnnotation] = [],
-        @MapAnnotationBuilder annotationContent: @escaping (MKAnnotation) -> MapAnnotation = { annotation in
+        @MapAnnotationBuilder annotationContent: @escaping (MKAnnotation) -> CarteAnnotationProtocol = { annotation in
             assertionFailure("Please provide an `annotationContent` closure for the values in `annotations`.")
             return CarteAnnotation(annotation: annotation) {}
         },
-        @MapAnnotationBuilder clusterAnnotation: @escaping (MKClusterAnnotation) -> MapAnnotation? = { _ in nil },
+        @MapAnnotationBuilder clusterAnnotation: @escaping (MKClusterAnnotation) -> CarteAnnotationProtocol? = { _ in nil },
         overlays: [MKOverlay] = [],
         @MapOverlayBuilder overlayContent: @escaping (MKOverlay) -> MapOverlay = { overlay in
             assertionFailure("Please provide an `overlayContent` closure for the values in `overlays`.")

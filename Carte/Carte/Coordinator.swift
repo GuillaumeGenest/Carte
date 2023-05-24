@@ -31,9 +31,9 @@ extension Carte {
 
         private var view: Carte?
 
-        private var annotationContentByObject = [ObjectIdentifier: MapAnnotation]()
+        private var annotationContentByObject = [ObjectIdentifier: CarteAnnotationProtocol]()
         private var annotationItemByObject = [ObjectIdentifier: AnnotationItems.Element]()
-        private var annotationContentByID = [AnnotationItems.Element.ID: MapAnnotation]()
+        private var annotationContentByID = [AnnotationItems.Element.ID: CarteAnnotationProtocol]()
 
         private var overlayContentByObject = [ObjectIdentifier: MapOverlay]()
         private var overlayContentByID = [OverlayItems.Element.ID: MapOverlay]()
@@ -49,9 +49,9 @@ extension Carte {
 
         override init() {}
 
-        deinit {
-            MapRegistry.clean()
-        }
+//        deinit {
+//            MapRegistry.clean()
+//        }
 
         // MARK: Methods
 
@@ -61,20 +61,20 @@ extension Carte {
             updateAnnotations(on: mapView, from: view, to: newView)
             updateCamera(on: mapView, context: context, animated: animation != nil)
             updateInformationVisibility(on: mapView, from: view, to: newView)
-            updateInteractionModes(on: mapView, from: view, to: newView)
+            //updateInteractionModes(on: mapView, from: view, to: newView)
             updateOverlays(on: mapView, from: view, to: newView)
             updatePointOfInterestFilter(on: mapView, from: view, to: newView)
-            //updateRegion(on: mapView, from: view, to: newView, animated: animation != nil)
+            updateRegion(on: mapView, from: view, to: newView, animated: animation != nil)
             updateType(on: mapView, from: view, to: newView)
             updateUserTracking(on: mapView, from: view, to: newView)
 
-            if let key = context.environment.mapKey {
-                MapRegistry[key] = mapView
-            }
+//            if let key = context.environment.mapKey {
+//                MapRegistry[key] = mapView
+//            }
         }
 
 
-        private func registerAnnotationViewIfNeeded(on mapView: MKMapView, for content: MapAnnotation) {
+        private func registerAnnotationViewIfNeeded(on mapView: MKMapView, for content: CarteAnnotationProtocol) {
             let contentType = type(of: content)
             let contentTypeKey = ObjectIdentifier(contentType)
             if !registeredAnnotationTypes.contains(contentTypeKey) {

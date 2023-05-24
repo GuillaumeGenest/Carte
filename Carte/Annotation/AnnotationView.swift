@@ -55,7 +55,7 @@ class MKCarteAnnotationView<Content: View>: MKAnnotationView {
 
 }
 
-public protocol MapAnnotation {
+public protocol CarteAnnotationProtocol {
 
     // MARK: Static Functions
 
@@ -71,7 +71,7 @@ public protocol MapAnnotation {
 
 }
 
-extension MapAnnotation {
+extension CarteAnnotationProtocol {
 
     static var reuseIdentifier: String {
         "__Carte__" + String(describing: self) + "__Carte__"
@@ -80,7 +80,7 @@ extension MapAnnotation {
 }
 
 
-public struct CarteAnnotation<Content: View>: MapAnnotation {
+public struct CarteAnnotation<Content: View>: CarteAnnotationProtocol {
 
     // MARK: Nested Types
 
