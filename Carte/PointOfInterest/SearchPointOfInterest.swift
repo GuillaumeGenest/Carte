@@ -25,15 +25,15 @@ class SearchPointOfInterest: NSObject, ObservableObject, MKLocalSearchCompleterD
             super.init()
         searchCompleter.delegate = self
         searchCompleter.resultTypes = .pointOfInterest
-        searchCompleter.pointOfInterestFilter = MKPointOfInterestFilter(including: [.museum])
+        searchCompleter.pointOfInterestFilter = MKPointOfInterestFilter(including: [.restaurant])
         searchCompleter.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 48.8566, longitude: 2.3522), span: MKCoordinateSpan(latitudeDelta: 8000, longitudeDelta: 8000))
-        searchCompleter.queryFragment = "palais"
+        searchCompleter.queryFragment = "Restaurant"
         }
 
     
     func searchMuseums() {
             let searchRequest = MKLocalSearch.Request()
-            searchRequest.naturalLanguageQuery = "palais"
+            searchRequest.naturalLanguageQuery = "Restaurant"
             search(using: searchRequest)
         }
     
@@ -55,7 +55,10 @@ class SearchPointOfInterest: NSObject, ObservableObject, MKLocalSearchCompleterD
     
     private func search(using searchRequest: MKLocalSearch.Request) {
         searchRequest.region = searchRegion
+        searchRequest.region = searchRegion
         searchRequest.resultTypes = .pointOfInterest
+//searchRequest.pointOfInterestFilter = MKPointOfInterestFilter(including: [.museum, .castle, .palace])
+               
         localSearch = MKLocalSearch(request: searchRequest)
         localSearch?.start { [weak self] response, error in
             guard let self = self else { return }
@@ -87,3 +90,55 @@ class SearchPointOfInterest: NSObject, ObservableObject, MKLocalSearchCompleterD
     }
 }
 
+
+class SearchPointOfInterests: NSObject, ObservableObject, MKLocalSearchCompleterDelegate {
+    @Published var pointsOfInterest: [PointOfInterest] = []
+
+    private var searchRegion: MKCoordinateRegion
+
+    override init() {
+        searchRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 48.8566, longitude: 2.3522), span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2))
+        super.init()
+    }
+
+    private func searchPointsOfInterest() {
+        let group = DispatchGroup()
+        var combinedResults: [PointOfInterest] = []
+
+        let searchTypes: [String] = ["Chateau", "palais", "musée", "cathedrale"]
+
+        for type in searchTypes {
+            group.enter()
+            let searchRequest = MKLocalSearch.Request()
+            searchRequest.naturalLanguageQuery = type
+            searchRequest.region = searchRegion
+            searchRequest.resultTypes = .pointOfInterest
+
+            let localSearch = MKLocalSearch(request: searchRequest)
+            localSearch.start { [weak self] response, error in
+                guard let self = self else { return }
+
+                if let mapItems = response?.mapItems {
+                    let results = mapItems.map { mapItem in
+                        return PointOfInterest(mapItem: mapItem)
+                    }
+                    combinedResults.append(contentsOf: results)
+                }
+
+                group.leave()
+            }
+        }
+
+        group.notify(queue: .main) {
+            self.pointsOfInterest = combinedResults
+        }
+    }
+
+    func searchPointsOfInterests() {
+        searchPointsOfInterest()
+    }
+
+    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
+        // Ne pas implémenter cette méthode si vous ne souhaitez pas utiliser MKLocalSearchCompleter
+    }
+}

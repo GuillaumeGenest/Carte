@@ -19,6 +19,7 @@
 		06A0CE4F2A1223A7003103C8 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A0CE4E2A1223A7003103C8 /* Category.swift */; };
 		06A0CE512A1223D1003103C8 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A0CE502A1223D1003103C8 /* LocationView.swift */; };
 		06A0CE542A12403E003103C8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A0CE532A12403C003103C8 /* MapKit.framework */; };
+		06AB2DDD2A20E131004AD954 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AB2DDC2A20E131004AD954 /* Header.swift */; };
 		06D2E6642A1B6D9F00987A2D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 06D2E6632A1B6D9F00987A2D /* README.md */; };
 		06D2E6692A1BB9AD00987A2D /* SearchPointOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D2E6682A1BB9AD00987A2D /* SearchPointOfInterest.swift */; };
 		06D2E66B2A1BBCB900987A2D /* MKPointOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D2E66A2A1BBCB900987A2D /* MKPointOfInterest.swift */; };
@@ -41,6 +42,7 @@
 		06A0CE4E2A1223A7003103C8 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		06A0CE502A1223D1003103C8 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		06A0CE532A12403C003103C8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS16.2.sdk/System/Library/Frameworks/MapKit.framework; sourceTree = DEVELOPER_DIR; };
+		06AB2DDC2A20E131004AD954 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		06D2E6632A1B6D9F00987A2D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		06D2E6682A1BB9AD00987A2D /* SearchPointOfInterest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPointOfInterest.swift; sourceTree = "<group>"; };
 		06D2E66A2A1BBCB900987A2D /* MKPointOfInterest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKPointOfInterest.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				06F9633D2A0E87DF00BDC6A8 /* Assets.xcassets */,
 				06F9633F2A0E87DF00BDC6A8 /* Carte.entitlements */,
 				06F963402A0E87DF00BDC6A8 /* Preview Content */,
+				06AB2DDC2A20E131004AD954 /* Header.swift */,
 			);
 			path = Carte;
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06AB2DDD2A20E131004AD954 /* Header.swift in Sources */,
 				069F4B2A2A12516700AA9784 /* View.swift in Sources */,
 				06F9633C2A0E87DC00BDC6A8 /* ContentView.swift in Sources */,
 				06A0CE512A1223D1003103C8 /* LocationView.swift in Sources */,

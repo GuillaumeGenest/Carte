@@ -10,7 +10,7 @@ import MapKit
 
 
 struct ContentView: View {
-    @StateObject var search = SearchPointOfInterest()
+    @StateObject var search = SearchPointOfInterests()
     @State var ShowDetailPlaceAnnotation : MKMapItem?
     @State var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 48.861, longitude: 2.335833), latitudinalMeters: 8000, longitudinalMeters: 8000)
     
@@ -36,7 +36,7 @@ struct ContentView: View {
             ZStack{
                 Map(coordinateRegion: $region,interactionModes: .all,
                     userTrackingMode: .none,
-                    annotationItems: search.places,
+                    annotationItems: search.pointsOfInterest,
                     annotationContent: { location in
                     MapAnnotation(coordinate: location.mapItem.placemark.coordinate){
                         VStack(spacing: 0) {
@@ -75,10 +75,6 @@ struct ContentView: View {
                 }
             }
         }else {
-            
-            VStack{
-                Text("Mon trip")
-            }
             ZStack{
                 Carte(coordinateRegion: $region ,type: MKStandardMapConfiguration(), userTrackingMode: $userTrackingMode ,annotationItems: MockedDataMapAnnotation,
                       annotationContent: { location in
@@ -105,27 +101,31 @@ struct ContentView: View {
                     }
                 },overlays: [
                     MKPolyline(coordinates: polylineCoordinates, count: polylineCoordinates.count)
-                      ],overlayContent: { overlay in
-                          RendererCarteOverlay(overlay: overlay) { _, overlay in
-                              
-                              if let polyline = overlay as? MKPolyline {
-                                  let renderer = MKPolylineRenderer(polyline: polyline)
-                                  renderer.lineWidth = 2
-                                  renderer.lineCap = .butt
-                                  renderer.lineJoin = .miter
-                                  renderer.miterLimit = 0
-                                  renderer.lineDashPhase = 0
-                                  renderer.lineDashPattern = [10,5]
-                                  renderer.strokeColor = .orange
-                                  return renderer
-                              } else {
-                                  assertionFailure("Unknown overlay type found.")
-                                  print("Probleme overlay")
-                                  return MKOverlayRenderer(overlay: overlay)
-                              }
-                          }
-                      }
+                ],overlayContent: { overlay in
+                    RendererCarteOverlay(overlay: overlay) { _, overlay in
+                        
+                        if let polyline = overlay as? MKPolyline {
+                            let renderer = MKPolylineRenderer(polyline: polyline)
+                            renderer.lineWidth = 2
+                            renderer.lineCap = .butt
+                            renderer.lineJoin = .miter
+                            renderer.miterLimit = 0
+                            renderer.lineDashPhase = 0
+                            renderer.lineDashPattern = [10,5]
+                            renderer.strokeColor = .orange
+                            return renderer
+                        } else {
+                            assertionFailure("Unknown overlay type found.")
+                            print("Probleme overlay")
+                            return MKOverlayRenderer(overlay: overlay)
+                        }
+                    }
+                }
                 ).edgesIgnoringSafeArea(.all)
+                VStack{
+                    HeaderModelView(title: "Mon voyage", PresenseBackButton: false, PresenceIcon: true, value: [ConfigurationHeaderButton(NameLabel: "Carte", NameIcon: "map", action: { self.ShowPointOfInterestMarker.toggle() })
+                    ])
+                
                 Spacer()
                 HStack{
                     Spacer()
@@ -140,7 +140,7 @@ struct ContentView: View {
                                 .clipShape(Circle())
                         }
                         Button {
-                            search.searchMuseums()
+                            search.searchPointsOfInterests()
                             ShowListPointOfInterest.toggle()
                         } label: {
                             Image(systemName: "info")
@@ -149,20 +149,22 @@ struct ContentView: View {
                                 .background(Color.primary)
                                 .clipShape(Circle())
                         }
-
+                        
                     }.frame(maxWidth: .infinity, alignment: .trailing)
                         .padding()
                 }
+                }
             }
             .sheet(isPresented: $ShowListPointOfInterest){
-                PointOfInterestListView(show: $ShowPointOfInterestMarker, dismiss: $ShowListPointOfInterest, pointofinterest: search.places)
+                PointOfInterestListView(show: $ShowPointOfInterestMarker, dismiss: $ShowListPointOfInterest, pointofinterest: search.pointsOfInterest)
             }
-            
-            
-            
+
             
             
         }
+            
+//        }.edgesIgnoringSafeArea(.all)
+//            .navigationBarHidden(true)
     }
 }
 
