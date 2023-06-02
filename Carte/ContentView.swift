@@ -11,10 +11,10 @@ import MapKit
 
 struct ContentView: View {
     @StateObject var search = SearchPointOfInterests()
-    @State var ShowDetailPlaceAnnotation : MKMapItem?
-    @State var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 48.861, longitude: 2.335833), latitudinalMeters: 8000, longitudinalMeters: 8000)
+    @State var ShowDetailPlaceAnnotation : PointOfInterest?
+    @State var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 48.861, longitude: 2.335833), latitudinalMeters: 20000, longitudinalMeters: 20000)
     
-    
+//    @State var category : PointOfInterestType = .Historique
     
     
     @State private var ShowInformationMapItem : Bool = false
@@ -31,140 +31,87 @@ struct ContentView: View {
         }
     }
     var body: some View {
-        
-        if ShowPointOfInterestMarker == true {
             ZStack{
-                Map(coordinateRegion: $region,interactionModes: .all,
-                    userTrackingMode: .none,
-                    annotationItems: search.pointsOfInterest,
-                    annotationContent: { location in
-                    MapAnnotation(coordinate: location.mapItem.placemark.coordinate){
-                        VStack(spacing: 0) {
-                            Image(systemName: "mappin")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 12, height: 12)
-                                .font(.headline)
-                                .foregroundColor(Color.white)
-                                .padding(6)
-                                .background(Color.purple)
-                                .clipShape(Circle())
-                            Image(systemName: "triangle.fill")
-                                .resizable()
-                                .scaledToFit()
-                                .foregroundColor(Color.purple)
-                                .frame(width: 8, height: 8)
-                                .rotationEffect(Angle(degrees: 180))
-                                .offset(y: -2.5)
-                                .padding(.bottom, 40)
+                if search.ShowPointOfInterestOnMap {
+                    Map(coordinateRegion: $region,interactionModes: .all,
+                        userTrackingMode: .none,
+                        annotationItems: search.pointsOfInterest,
+                        annotationContent: { location in
+                        MapAnnotation(coordinate: location.mapItem.placemark.coordinate){
+                            VStack(spacing: 0) {
+                                Image(systemName: "mappin")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 12, height: 12)
+                                    .font(.headline)
+                                    .foregroundColor(Color.white)
+                                    .padding(6)
+                                    .background(search.selectedType.color)
+                                    .clipShape(Circle())
+                                Image(systemName: "triangle.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .foregroundColor(search.selectedType.color)
+                                    .frame(width: 8, height: 8)
+                                    .rotationEffect(Angle(degrees: 180))
+                                    .offset(y: -2.5)
+                                    .padding(.bottom, 40)
+                            }
+                            .onTapGesture {
+                                self.ShowDetailPlaceAnnotation = location
+                                search.ShowInformationMapItem.toggle()
+                                
+                            }
                         }
-                        .onTapGesture {
-                            self.ShowDetailPlaceAnnotation = location.mapItem
-                            ShowInformationMapItem.toggle()
-                            
-                        }
+                    }).edgesIgnoringSafeArea(.all)
+                }else{
+                    Map(coordinateRegion: $region)
+                        .edgesIgnoringSafeArea(.all)
                     }
-                }).edgesIgnoringSafeArea(.all)
-                
-                if ShowInformationMapItem == true {
-                    
-                    VStack{
-                        Spacer()
-                        InformationMapItem(place: self.ShowDetailPlaceAnnotation!)
-                    }
-                }
-            }
-        }else {
-            ZStack{
-                Carte(coordinateRegion: $region ,type: MKStandardMapConfiguration(), userTrackingMode: $userTrackingMode ,annotationItems: MockedDataMapAnnotation,
-                      annotationContent: { location in
-                    CarteAnnotation(coordinate: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)) {
-                        VStack(spacing: 0) {
-                            Image(systemName: "map")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 15, height: 15)
-                                .font(.headline)
-                                .foregroundColor(Color.black)
-                                .padding(6)
-                                .background(Color.white)
-                                .clipShape(Circle())
-                            Image(systemName: "triangle.fill")
-                                .resizable()
-                                .scaledToFit()
-                                .foregroundColor(.black)
-                                .frame(width: 10, height: 10)
-                                .rotationEffect(Angle(degrees: 180))
-                                .offset(y: -1.5)
-                                .padding(.bottom, 40)
-                        }
-                    }
-                },overlays: [
-                    MKPolyline(coordinates: polylineCoordinates, count: polylineCoordinates.count)
-                ],overlayContent: { overlay in
-                    RendererCarteOverlay(overlay: overlay) { _, overlay in
-                        
-                        if let polyline = overlay as? MKPolyline {
-                            let renderer = MKPolylineRenderer(polyline: polyline)
-                            renderer.lineWidth = 2
-                            renderer.lineCap = .butt
-                            renderer.lineJoin = .miter
-                            renderer.miterLimit = 0
-                            renderer.lineDashPhase = 0
-                            renderer.lineDashPattern = [10,5]
-                            renderer.strokeColor = .orange
-                            return renderer
-                        } else {
-                            assertionFailure("Unknown overlay type found.")
-                            print("Probleme overlay")
-                            return MKOverlayRenderer(overlay: overlay)
-                        }
-                    }
-                }
-                ).edgesIgnoringSafeArea(.all)
                 VStack{
-                    HeaderModelView(title: "Mon voyage", PresenseBackButton: false, PresenceIcon: true, value: [ConfigurationHeaderButton(NameLabel: "Carte", NameIcon: "map", action: { self.ShowPointOfInterestMarker.toggle() })
-                    ])
-                
-                Spacer()
-                HStack{
                     Spacer()
-                    VStack{
-                        Button {
-                            createPolylineCoordinates()
-                        } label: {
-                            Image(systemName: "map")
-                                .font(.title2)
-                                .padding(10)
-                                .background(Color.primary)
-                                .clipShape(Circle())
+
+                    Spacer()
+                    HStack{
+                        if search.ShowInformationMapItem{
+                            LocationPreviewView(pointofinterest: self.ShowDetailPlaceAnnotation!)
+                                .environmentObject(search)
+                                .padding()
+                        }else {
+                            
+                            VStack(){
+                                Button {
+                                    search.ShowPointOfInterestOnMap = false
+                                } label: {
+                                    Image(systemName: "map")
+                                        .font(.title2)
+                                        .padding(10)
+                                        .background(Color.primary)
+                                        .clipShape(Circle())
+                                }
+                                Button {
+                                    search.searchPointsOfInterests()
+                                    ShowListPointOfInterest.toggle()
+                                } label: {
+                                    Image(systemName: "info")
+                                        .font(.title2)
+                                        .padding(10)
+                                        .background(Color.primary)
+                                        .clipShape(Circle())
+                                }
+                                
+                            }
                         }
-                        Button {
-                            search.searchPointsOfInterests()
-                            ShowListPointOfInterest.toggle()
-                        } label: {
-                            Image(systemName: "info")
-                                .font(.title2)
-                                .padding(10)
-                                .background(Color.primary)
-                                .clipShape(Circle())
-                        }
-                        
-                    }.frame(maxWidth: .infinity, alignment: .trailing)
+                        }.frame(maxWidth: .infinity, alignment: .trailing)
                         .padding()
                 }
+            }.sheet(isPresented: $ShowListPointOfInterest){
+                PointOfInterestListView(show: $ShowPointOfInterestMarker, dismiss: $ShowListPointOfInterest, category: $search.selectedType, pointofinterest: search.pointsOfInterest)
+                    .environmentObject(search)
+                    .onChange(of: search.selectedType) { _ in
+                    search.searchPointsOfInterests()
                 }
             }
-            .sheet(isPresented: $ShowListPointOfInterest){
-                PointOfInterestListView(show: $ShowPointOfInterestMarker, dismiss: $ShowListPointOfInterest, pointofinterest: search.pointsOfInterest)
-            }
-
-            
-            
-        }
-            
-//        }.edgesIgnoringSafeArea(.all)
-//            .navigationBarHidden(true)
     }
 }
 
@@ -174,49 +121,7 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-struct InformationMapItem: View {
-    var place : MKMapItem
-    
-    var body: some View{
-        VStack{
-            Text(place.name ?? "")
-            Text(place.placemark.thoroughfare ?? "")
-        }.background(Color.white)
-    }
-}
 
 
 
 
-
-
-struct PointOfInterestListView : View {
-    @Binding var show : Bool
-    @Binding var dismiss : Bool
-    var pointofinterest: [PointOfInterest]
-    var body: some View{
-        ScrollView{
-            Text("List of point of interest")
-            Button {
-                show.toggle()
-                dismiss.toggle()
-            } label: {
-                Text("see the marker ")
-            }
-
-            ForEach(pointofinterest) { i in
-                VStack(alignment: .leading){
-                    Text(i.mapItem.name ?? "")
-                    Text(i.mapItem.placemark.title ?? "")
-                        .font(.caption)
-                    Divider()
-                }.padding(.horizontal, 8)
-            }
-        }
-    }
-}
-
-struct PointOfInterest : Identifiable {
-    var id = UUID()
-    var mapItem: MKMapItem
-}

@@ -22,7 +22,7 @@
 		06AB2DDD2A20E131004AD954 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AB2DDC2A20E131004AD954 /* Header.swift */; };
 		06D2E6642A1B6D9F00987A2D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 06D2E6632A1B6D9F00987A2D /* README.md */; };
 		06D2E6692A1BB9AD00987A2D /* SearchPointOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D2E6682A1BB9AD00987A2D /* SearchPointOfInterest.swift */; };
-		06D2E66B2A1BBCB900987A2D /* MKPointOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D2E66A2A1BBCB900987A2D /* MKPointOfInterest.swift */; };
+		06D2E66B2A1BBCB900987A2D /* PointOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D2E66A2A1BBCB900987A2D /* PointOfInterest.swift */; };
 		06F9633A2A0E87DC00BDC6A8 /* CarteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F963392A0E87DC00BDC6A8 /* CarteApp.swift */; };
 		06F9633C2A0E87DC00BDC6A8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F9633B2A0E87DC00BDC6A8 /* ContentView.swift */; };
 		06F9633E2A0E87DF00BDC6A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06F9633D2A0E87DF00BDC6A8 /* Assets.xcassets */; };
@@ -45,7 +45,7 @@
 		06AB2DDC2A20E131004AD954 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		06D2E6632A1B6D9F00987A2D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		06D2E6682A1BB9AD00987A2D /* SearchPointOfInterest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPointOfInterest.swift; sourceTree = "<group>"; };
-		06D2E66A2A1BBCB900987A2D /* MKPointOfInterest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKPointOfInterest.swift; sourceTree = "<group>"; };
+		06D2E66A2A1BBCB900987A2D /* PointOfInterest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointOfInterest.swift; sourceTree = "<group>"; };
 		06F963362A0E87DC00BDC6A8 /* Carte.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Carte.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06F963392A0E87DC00BDC6A8 /* CarteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarteApp.swift; sourceTree = "<group>"; };
 		06F9633B2A0E87DC00BDC6A8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -124,7 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				06D2E6682A1BB9AD00987A2D /* SearchPointOfInterest.swift */,
-				06D2E66A2A1BBCB900987A2D /* MKPointOfInterest.swift */,
+				06D2E66A2A1BBCB900987A2D /* PointOfInterest.swift */,
 			);
 			path = PointOfInterest;
 			sourceTree = "<group>";
@@ -258,7 +258,7 @@
 				06D2E6692A1BB9AD00987A2D /* SearchPointOfInterest.swift in Sources */,
 				06A0CE3F2A0E8D98003103C8 /* Extension.swift in Sources */,
 				06A0CE462A0E90E3003103C8 /* MultiPolygon.swift in Sources */,
-				06D2E66B2A1BBCB900987A2D /* MKPointOfInterest.swift in Sources */,
+				06D2E66B2A1BBCB900987A2D /* PointOfInterest.swift in Sources */,
 				06A0CE412A0E8FCE003103C8 /* Carte.swift in Sources */,
 				06A0CE4F2A1223A7003103C8 /* Category.swift in Sources */,
 			);

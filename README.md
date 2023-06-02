@@ -4,6 +4,13 @@
 
 
 
-L'inplémentation de [Map](https://developer.apple.com/documentation/mapkit/map) est relativement limité. 
-J'ai décidé de d'implémenter une solution capable d'afficher des annotations et des overlays customisables
+L'implémentation de [Map](https://developer.apple.com/documentation/mapkit/map) est relativement limitée. 
+J'ai décidé d'implémenter une solution capable d'afficher des annotations et des overlays customisables.
 
+J'ai ajouté la possibilite pour l'utilisateur d'afficher des points d'intêret.
+
+
+
+
+IMG_7853.PNG
+IMG_7852.PNG
