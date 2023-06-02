@@ -11,6 +11,5 @@ J'ai ajouté la possibilite pour l'utilisateur d'afficher des points d'intêret.
 
 
 
-
-IMG_7853.PNG
-IMG_7852.PNG
+![IMG_7853](https://github.com/SunnyOnRoads/Carte/assets/128893420/7e4daa4f-bf1e-4330-ae21-6a72b3d64f53)
+![IMG_7852](https://github.com/SunnyOnRoads/Carte/assets/128893420/7653e474-ba99-46d5-b61a-c13d587423cc)
