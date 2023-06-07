@@ -28,6 +28,28 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "06DF66362A2F5B2600C6F2FE"
+               BuildableName = "CarteUITests.xctest"
+               BlueprintName = "CarteUITests"
+               ReferencedContainer = "container:Carte.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "06DF66522A2F680D00C6F2FE"
+               BuildableName = "CarteTests.xctest"
+               BlueprintName = "CarteTests"
+               ReferencedContainer = "container:Carte.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
