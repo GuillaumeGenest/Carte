@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0634CCAB2A31DA040086AF7B /* UITestsSearch_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0634CCAA2A31DA030086AF7B /* UITestsSearch_Tests.swift */; };
 		069F4B2A2A12516700AA9784 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069F4B292A12516700AA9784 /* View.swift */; };
 		06A0CE3C2A0E8CDA003103C8 /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A0CE3B2A0E8CDA003103C8 /* AnnotationView.swift */; };
 		06A0CE3F2A0E8D98003103C8 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A0CE3E2A0E8D98003103C8 /* Extension.swift */; };
@@ -25,6 +26,8 @@
 		06D2E66B2A1BBCB900987A2D /* PointOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D2E66A2A1BBCB900987A2D /* PointOfInterest.swift */; };
 		06DF66562A2F680D00C6F2FE /* CarteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DF66552A2F680D00C6F2FE /* CarteTests.swift */; };
 		06DF665F2A2F68C400C6F2FE /* UnitTestsSearchModel_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DF665E2A2F68C400C6F2FE /* UnitTestsSearchModel_Tests.swift */; };
+		06DF66782A31BC5400C6F2FE /* CarteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DF66772A31BC5400C6F2FE /* CarteUITests.swift */; };
+		06DF667A2A31BC5400C6F2FE /* CarteUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DF66792A31BC5400C6F2FE /* CarteUITestsLaunchTests.swift */; };
 		06F9633A2A0E87DC00BDC6A8 /* CarteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F963392A0E87DC00BDC6A8 /* CarteApp.swift */; };
 		06F9633C2A0E87DC00BDC6A8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F9633B2A0E87DC00BDC6A8 /* ContentView.swift */; };
 		06F9633E2A0E87DF00BDC6A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06F9633D2A0E87DF00BDC6A8 /* Assets.xcassets */; };
@@ -39,9 +42,17 @@
 			remoteGlobalIDString = 06F963352A0E87DC00BDC6A8;
 			remoteInfo = Carte;
 		};
+		06DF667B2A31BC5400C6F2FE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 06F9632E2A0E87DC00BDC6A8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 06F963352A0E87DC00BDC6A8;
+			remoteInfo = Carte;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0634CCAA2A31DA030086AF7B /* UITestsSearch_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestsSearch_Tests.swift; sourceTree = "<group>"; };
 		069F4B292A12516700AA9784 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		06A0CE3B2A0E8CDA003103C8 /* AnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
 		06A0CE3E2A0E8D98003103C8 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
@@ -61,6 +72,9 @@
 		06DF66532A2F680D00C6F2FE /* CarteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CarteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		06DF66552A2F680D00C6F2FE /* CarteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarteTests.swift; sourceTree = "<group>"; };
 		06DF665E2A2F68C400C6F2FE /* UnitTestsSearchModel_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTestsSearchModel_Tests.swift; sourceTree = "<group>"; };
+		06DF66752A31BC5400C6F2FE /* CarteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CarteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		06DF66772A31BC5400C6F2FE /* CarteUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarteUITests.swift; sourceTree = "<group>"; };
+		06DF66792A31BC5400C6F2FE /* CarteUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarteUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		06F963362A0E87DC00BDC6A8 /* Carte.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Carte.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06F963392A0E87DC00BDC6A8 /* CarteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarteApp.swift; sourceTree = "<group>"; };
 		06F9633B2A0E87DC00BDC6A8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -71,6 +85,13 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		06DF66502A2F680D00C6F2FE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		06DF66722A31BC5400C6F2FE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -168,12 +189,23 @@
 			path = CarteTests;
 			sourceTree = "<group>";
 		};
+		06DF66762A31BC5400C6F2FE /* CarteUITests */ = {
+			isa = PBXGroup;
+			children = (
+				06DF66772A31BC5400C6F2FE /* CarteUITests.swift */,
+				0634CCAA2A31DA030086AF7B /* UITestsSearch_Tests.swift */,
+				06DF66792A31BC5400C6F2FE /* CarteUITestsLaunchTests.swift */,
+			);
+			path = CarteUITests;
+			sourceTree = "<group>";
+		};
 		06F9632D2A0E87DC00BDC6A8 = {
 			isa = PBXGroup;
 			children = (
 				06D2E6632A1B6D9F00987A2D /* README.md */,
 				06F963382A0E87DC00BDC6A8 /* Carte */,
 				06DF66542A2F680D00C6F2FE /* CarteTests */,
+				06DF66762A31BC5400C6F2FE /* CarteUITests */,
 				06F963372A0E87DC00BDC6A8 /* Products */,
 				06A0CE522A124038003103C8 /* Frameworks */,
 			);
@@ -184,6 +216,7 @@
 			children = (
 				06F963362A0E87DC00BDC6A8 /* Carte.app */,
 				06DF66532A2F680D00C6F2FE /* CarteTests.xctest */,
+				06DF66752A31BC5400C6F2FE /* CarteUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -236,6 +269,24 @@
 			productReference = 06DF66532A2F680D00C6F2FE /* CarteTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		06DF66742A31BC5400C6F2FE /* CarteUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 06DF667D2A31BC5400C6F2FE /* Build configuration list for PBXNativeTarget "CarteUITests" */;
+			buildPhases = (
+				06DF66712A31BC5400C6F2FE /* Sources */,
+				06DF66722A31BC5400C6F2FE /* Frameworks */,
+				06DF66732A31BC5400C6F2FE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				06DF667C2A31BC5400C6F2FE /* PBXTargetDependency */,
+			);
+			name = CarteUITests;
+			productName = CarteUITests;
+			productReference = 06DF66752A31BC5400C6F2FE /* CarteUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		06F963352A0E87DC00BDC6A8 /* Carte */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 06F963452A0E87DF00BDC6A8 /* Build configuration list for PBXNativeTarget "Carte" */;
@@ -267,6 +318,10 @@
 						CreatedOnToolsVersion = 14.2;
 						TestTargetID = 06F963352A0E87DC00BDC6A8;
 					};
+					06DF66742A31BC5400C6F2FE = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 06F963352A0E87DC00BDC6A8;
+					};
 					06F963352A0E87DC00BDC6A8 = {
 						CreatedOnToolsVersion = 14.2;
 					};
@@ -287,12 +342,20 @@
 			targets = (
 				06F963352A0E87DC00BDC6A8 /* Carte */,
 				06DF66522A2F680D00C6F2FE /* CarteTests */,
+				06DF66742A31BC5400C6F2FE /* CarteUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		06DF66512A2F680D00C6F2FE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		06DF66732A31BC5400C6F2FE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -318,6 +381,16 @@
 			files = (
 				06DF665F2A2F68C400C6F2FE /* UnitTestsSearchModel_Tests.swift in Sources */,
 				06DF66562A2F680D00C6F2FE /* CarteTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		06DF66712A31BC5400C6F2FE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0634CCAB2A31DA040086AF7B /* UITestsSearch_Tests.swift in Sources */,
+				06DF667A2A31BC5400C6F2FE /* CarteUITestsLaunchTests.swift in Sources */,
+				06DF66782A31BC5400C6F2FE /* CarteUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,6 +424,11 @@
 			isa = PBXTargetDependency;
 			target = 06F963352A0E87DC00BDC6A8 /* Carte */;
 			targetProxy = 06DF66572A2F680D00C6F2FE /* PBXContainerItemProxy */;
+		};
+		06DF667C2A31BC5400C6F2FE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 06F963352A0E87DC00BDC6A8 /* Carte */;
+			targetProxy = 06DF667B2A31BC5400C6F2FE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -392,6 +470,45 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Carte.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Carte";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		06DF667E2A31BC5400C6F2FE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8LY5P9NNCS;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Guillaume-Genest.CarteUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Carte;
+			};
+			name = Debug;
+		};
+		06DF667F2A31BC5400C6F2FE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8LY5P9NNCS;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Guillaume-Genest.CarteUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Carte;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -595,6 +712,15 @@
 			buildConfigurations = (
 				06DF665A2A2F680D00C6F2FE /* Debug */,
 				06DF665B2A2F680D00C6F2FE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		06DF667D2A31BC5400C6F2FE /* Build configuration list for PBXNativeTarget "CarteUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				06DF667E2A31BC5400C6F2FE /* Debug */,
+				06DF667F2A31BC5400C6F2FE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
