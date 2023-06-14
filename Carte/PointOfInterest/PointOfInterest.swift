@@ -164,13 +164,33 @@ struct ListPointOfInterest : View{
     var body: some View{
         ScrollView{
             ForEach(pointofinterest) { i in
-                VStack(alignment: .leading){
-                    Text(i.mapItem.name ?? "")
-                    Text(i.mapItem.placemark.title ?? "")
-                        .font(.caption)
-                    Divider()
-                }.padding(.horizontal, 8)
+                NavigationLink(destination: RegisterInformation(point: i),
+                        label: {
+                        VStack{
+                            Text(i.mapItem.name ?? "")
+                            Text(i.mapItem.placemark.title ?? "")
+                            Text(i.mapItem.phoneNumber ?? "")
+                       
+                                .font(.caption)
+                            
+                            
+                        }.foregroundColor(.black)
+                })
             }
+        }
+    }
+}
+
+
+struct RegisterInformation: View {
+    var point : PointOfInterest
+    var body: some View{
+        
+        VStack{
+            Text(point.mapItem.name ?? "")
+            Text(point.mapItem.phoneNumber ?? "")
+            
+            
         }
     }
 }

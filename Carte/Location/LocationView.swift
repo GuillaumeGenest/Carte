@@ -62,6 +62,7 @@ struct LocationPreviewView: View {
             titleSection
         }
         VStack(spacing: 8) {
+            Enregistrement
             CancelButton
             }
         }
@@ -121,20 +122,18 @@ struct LocationPreviewView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
         }
     
-    private var DisplayLocation: some View {
-        Button(action: {
-          
-            
-        }
-//            mapData.ShowDetailPlace.toggle()
-//            mapData.DisplayInformation.toggle()}
-            , label: {
-              Text("Afficher")
-                  .font(.headline)
-                  .frame(width: 125, height: 35)
+    private var Enregistrement: some View {
+        Button(action: {}, label: {
+              Text("Enregistrement")
+                .foregroundColor(Color.white)
+                .font(.callout)
+                .fontWeight(.semibold)
+                .frame(width: 125, height: 35)
+                .padding(8)
+                .background(Color.orange)
+                .cornerRadius(10)
           })
           //.background(Color.orange)
-          .buttonStyle(.borderedProminent)
       }
     
     private var CancelButton: some View {

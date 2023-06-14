@@ -101,7 +101,7 @@ class SearchPointOfInterests: NSObject, ObservableObject, MKLocalSearchCompleter
     @Published var ShowPointOfInterest: Bool = false
     @Published var ShowInformationMapItem: Bool = false
     @Published var ShowPointOfInterestOnMap: Bool = false 
-    private var searchRegion: MKCoordinateRegion {
+    @Published var searchRegion: MKCoordinateRegion {
             didSet {
                 searchPointsOfInterest()
             }
@@ -112,7 +112,7 @@ class SearchPointOfInterests: NSObject, ObservableObject, MKLocalSearchCompleter
         super.init()
     }
 
-    private func searchPointsOfInterest() {
+func searchPointsOfInterest() {
         let group = DispatchGroup()
         var combinedResults: [PointOfInterest] = []
 
@@ -155,4 +155,18 @@ class SearchPointOfInterests: NSObject, ObservableObject, MKLocalSearchCompleter
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
         // Ne pas implémenter cette méthode si vous ne souhaitez pas utiliser MKLocalSearchCompleter
     }
+}
+
+
+extension SearchPointOfInterests {
+
+        private func displaySearchError(_ error: Error?) {
+            guard let error = error as NSError? else { return }
+    
+            let alertTitle = NSLocalizedString("SEARCH_RESULTS_ERROR_TITLE", comment: "Error alert title")
+            let alertController = UIAlertController(title: alertTitle, message: error.description, preferredStyle: .alert)
+            let okAction = UIAlertAction(title: NSLocalizedString("BUTTON_OK", comment: "OK alert button"), style: .default) { _ in
+            }
+            alertController.addAction(okAction)
+        }
 }
