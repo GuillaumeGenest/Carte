@@ -7,14 +7,18 @@
 
 import SwiftUI
 import MapKit
+import CoreLocation
 
 
 struct ContentView: View {
+    @StateObject var userlocation = locationManager()
     @StateObject var search = SearchPointOfInterests()
     @State var ShowDetailPlaceAnnotation : PointOfInterest?
-    @State var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 48.861, longitude: 2.335833), latitudinalMeters: 20000, longitudinalMeters: 20000)
-    
+    @State var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 45.188529, longitude: 5.724524), latitudinalMeters: 20000, longitudinalMeters: 20000)
+    @State private var userAnnotationColor: UIColor = .red
 //    @State var category : PointOfInterestType = .Historique
+    
+
     
     
     @State private var ShowInformationMapItem : Bool = false
@@ -23,7 +27,7 @@ struct ContentView: View {
     @State private var pointsOfInterest: [MKMapFeatureAnnotation] = []
     
     @State private var polylineCoordinates: [CLLocationCoordinate2D] = []
-    @State private var userTrackingMode = UserTrackingMode.follow
+    @State private var user = MapUserTrackingMode.follow
     
     func createPolylineCoordinates() {
         polylineCoordinates = MockedDataMapAnnotation.map { location in
@@ -34,7 +38,8 @@ struct ContentView: View {
             ZStack{
                 if search.ShowPointOfInterestOnMap {
                     Map(coordinateRegion: $region,interactionModes: .all,
-                        userTrackingMode: .none,
+                        showsUserLocation: true,
+                        userTrackingMode: $user,
                         annotationItems: search.pointsOfInterest,
                         annotationContent: { location in
                         MapAnnotation(coordinate: location.mapItem.placemark.coordinate){
@@ -65,7 +70,7 @@ struct ContentView: View {
                         }
                     }).edgesIgnoringSafeArea(.all)
                 }else{
-                    Map(coordinateRegion: $region)
+                    Map(coordinateRegion: $region, showsUserLocation: true, userTrackingMode: $user)
                         .edgesIgnoringSafeArea(.all)
                     }
                 VStack{

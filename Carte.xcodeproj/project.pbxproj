@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0634CCAB2A31DA040086AF7B /* UITestsSearch_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0634CCAA2A31DA030086AF7B /* UITestsSearch_Tests.swift */; };
+		0692AAC22A3A0E9200A4BFCB /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0692AAC12A3A0E9200A4BFCB /* LocationManager.swift */; };
+		0692AAC62A3A52D400A4BFCB /* UnitTestslocationManager_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0692AAC52A3A52D400A4BFCB /* UnitTestslocationManager_Tests.swift */; };
 		069F4B2A2A12516700AA9784 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069F4B292A12516700AA9784 /* View.swift */; };
 		06A0CE3C2A0E8CDA003103C8 /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A0CE3B2A0E8CDA003103C8 /* AnnotationView.swift */; };
 		06A0CE3F2A0E8D98003103C8 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A0CE3E2A0E8D98003103C8 /* Extension.swift */; };
@@ -53,6 +55,8 @@
 
 /* Begin PBXFileReference section */
 		0634CCAA2A31DA030086AF7B /* UITestsSearch_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestsSearch_Tests.swift; sourceTree = "<group>"; };
+		0692AAC12A3A0E9200A4BFCB /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		0692AAC52A3A52D400A4BFCB /* UnitTestslocationManager_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTestslocationManager_Tests.swift; sourceTree = "<group>"; };
 		069F4B292A12516700AA9784 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		06A0CE3B2A0E8CDA003103C8 /* AnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
 		06A0CE3E2A0E8D98003103C8 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
@@ -109,6 +113,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0692AAC02A3A0DED00A4BFCB /* UserLocation */ = {
+			isa = PBXGroup;
+			children = (
+				0692AAC12A3A0E9200A4BFCB /* LocationManager.swift */,
+			);
+			path = UserLocation;
+			sourceTree = "<group>";
+		};
 		06A0CE392A0E8C43003103C8 /* Carte */ = {
 			isa = PBXGroup;
 			children = (
@@ -185,6 +197,7 @@
 			children = (
 				06DF66552A2F680D00C6F2FE /* CarteTests.swift */,
 				06DF665E2A2F68C400C6F2FE /* UnitTestsSearchModel_Tests.swift */,
+				0692AAC52A3A52D400A4BFCB /* UnitTestslocationManager_Tests.swift */,
 			);
 			path = CarteTests;
 			sourceTree = "<group>";
@@ -224,6 +237,7 @@
 		06F963382A0E87DC00BDC6A8 /* Carte */ = {
 			isa = PBXGroup;
 			children = (
+				0692AAC02A3A0DED00A4BFCB /* UserLocation */,
 				06DF66322A2F5A9800C6F2FE /* Utils */,
 				06D2E6672A1BB97A00987A2D /* PointOfInterest */,
 				06A0CE4B2A1222F1003103C8 /* Location */,
@@ -380,6 +394,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				06DF665F2A2F68C400C6F2FE /* UnitTestsSearchModel_Tests.swift in Sources */,
+				0692AAC62A3A52D400A4BFCB /* UnitTestslocationManager_Tests.swift in Sources */,
 				06DF66562A2F680D00C6F2FE /* CarteTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -399,6 +414,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				06AB2DDD2A20E131004AD954 /* Header.swift in Sources */,
+				0692AAC22A3A0E9200A4BFCB /* LocationManager.swift in Sources */,
 				069F4B2A2A12516700AA9784 /* View.swift in Sources */,
 				06F9633C2A0E87DC00BDC6A8 /* ContentView.swift in Sources */,
 				06A0CE512A1223D1003103C8 /* LocationView.swift in Sources */,
@@ -636,6 +652,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Carte/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Need permission to track user location ";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -677,6 +694,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Carte/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Need permission to track user location ";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

@@ -108,7 +108,7 @@ class SearchPointOfInterests: NSObject, ObservableObject, MKLocalSearchCompleter
         }
 
  override init() {
-        searchRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 48.8566, longitude: 2.3522), span: MKCoordinateSpan(latitudeDelta: 2, longitudeDelta: 2))
+        searchRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 45.188529, longitude: 5.724524), span: MKCoordinateSpan(latitudeDelta: 2, longitudeDelta: 2))
         super.init()
     }
 

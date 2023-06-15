@@ -196,7 +196,7 @@ public struct MapInteractionModes: OptionSet {
 }
 
 
-public enum UserTrackingMode {
+public enum usertrackingmode {
 
     // MARK: Cases
 
