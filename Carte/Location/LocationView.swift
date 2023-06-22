@@ -138,7 +138,7 @@ struct LocationPreviewView: View {
     
     private var CancelButton: some View {
             Button {
-                search.ShowInformationMapItem.toggle()
+                search.ShowInformationMapItem = false 
 //                mapData.ShowDetailPlace.toggle()
             } label: {
                 Text("Retour")

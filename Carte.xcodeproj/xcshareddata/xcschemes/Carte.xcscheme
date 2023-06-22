@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "1420"
-   version = "1.3">
+   version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
@@ -26,14 +26,15 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
       <Testables>
          <TestableReference
             skipped = "NO"
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "06DF66362A2F5B2600C6F2FE"
+               BlueprintIdentifier = "06DF66742A31BC5400C6F2FE"
                BuildableName = "CarteUITests.xctest"
                BlueprintName = "CarteUITests"
                ReferencedContainer = "container:Carte.xcodeproj">
@@ -49,6 +50,10 @@
                BlueprintName = "CarteTests"
                ReferencedContainer = "container:Carte.xcodeproj">
             </BuildableReference>
+            <LocationScenarioReference
+               identifier = "London, England"
+               referenceType = "1">
+            </LocationScenarioReference>
          </TestableReference>
       </Testables>
    </TestAction>

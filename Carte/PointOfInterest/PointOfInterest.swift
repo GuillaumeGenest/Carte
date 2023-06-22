@@ -112,9 +112,9 @@ enum PointOfInterestType: String, CaseIterable, Codable {
     var queries: [String] {
         switch self {
         case .Histoire:
-            return ["Chateau", "palais", "musée", "cathedrale", "tour"]
+            return ["Chateau", "palais", "musée"]
         case .Greographie:
-            return ["Parc ", "Bois ", "Square "]
+            return ["Parc ", "Bois ", "Foret "]
         }
     }
 }
@@ -192,5 +192,36 @@ struct RegisterInformation: View {
             
             
         }
+    }
+}
+
+
+
+struct ListPointOfInterestView: View {
+    @Environment(\.presentationMode) var presentationMode
+    var pointofinterest: [PointOfInterest]
+    var body: some View {
+        VStack{
+            HeaderModelView(title: "Liste des Points ", PresenseBackButton: true, PresenceIcon: false, BackButtonClick: {self.presentationMode.wrappedValue.dismiss()}, value: [])
+                .frame(maxWidth: .infinity)
+            ScrollView{
+                ForEach(pointofinterest) { i in
+                    VStack(alignment: .leading){
+                            Text(i.mapItem.name ?? "")
+                            Text(i.mapItem.placemark.title ?? "")
+                            Text(i.mapItem.phoneNumber ?? "")
+                                .font(.caption)
+                        Divider()
+                    }.foregroundColor(.black)
+                        .padding(10)
+                }
+            }
+        }.edgesIgnoringSafeArea(.all)
+    }
+}
+
+struct ListPointOfInterestView_Previews: PreviewProvider {
+    static var previews: some View {
+        MapPointOfInterest()
     }
 }
