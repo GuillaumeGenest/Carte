@@ -13,6 +13,7 @@ struct HeaderModelView: View {
     var title: String
     var PresenseBackButton: Bool?
     var PresenceIcon: Bool?
+    var BackButtonIcon: String?
     var ButtonOneIcon: String?
     var BackButtonClick: (() -> ())?
     let value: [ConfigurationHeaderButton]?
@@ -22,7 +23,11 @@ struct HeaderModelView: View {
             HStack{
                 if PresenseBackButton == true {
                     if self.BackButtonClick != nil {
-                        HeaderButton(action: {BackButtonClick!()}, nameIcon: "chevron.backward")
+                        if self.BackButtonIcon != nil {
+                            HeaderButton(action: {BackButtonClick!()}, nameIcon: BackButtonIcon ?? "")
+                        }else{
+                            HeaderButton(action: {BackButtonClick!()}, nameIcon: "chevron.backward")
+                        }
                     }
                 }else{
                     Spacer()

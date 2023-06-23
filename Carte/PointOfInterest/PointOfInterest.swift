@@ -96,27 +96,67 @@ extension MKPointOfInterestCategory {
 
 
 enum PointOfInterestType: String, CaseIterable, Codable {
-    case Histoire
-    case Greographie
-    
-    
-    var color: Color {
-        switch self {
-        case .Histoire:
-            return Color.red
-        case .Greographie:
-            return Color.green
+    case Monument
+    case nature
+    case attractions
+    case plages
+    case ville
+    case cuisine
+    case sport
+    case sante
+    case culture
+    case art
+        
+        var color: Color {
+            switch self {
+            case .Monument:
+                return Color.red
+            case .nature:
+                return Color.green
+            case .attractions:
+                return Color.blue
+            case .plages:
+                return Color.orange
+            case .ville:
+                return Color.purple
+            case .cuisine:
+                return Color.red
+            case .sport:
+                return Color.yellow
+            case .sante:
+                return Color.gray
+            case .culture:
+                return Color.pink
+            case .art:
+                return Color.brown
+            }
         }
-    }
-    
-    var queries: [String] {
-        switch self {
-        case .Histoire:
-            return ["Chateau", "palais", "musée"]
-        case .Greographie:
-            return ["Parc ", "Bois ", "Foret "]
+        
+        var queries: [String] {
+            switch self {
+            case .Monument:
+                return ["chateau", "palais", "musee"]
+            case .nature:
+                return ["Parcs", "reserves", "montagnes"]
+            case .attractions:
+                return ["foraine", "Bowling"]
+            case .plages:
+                return ["plages", "lac"]
+            case .ville:
+                return ["restaurants", "boutiques"]
+            case .cuisine:
+                return ["cuisine", "specialites", "vins"]
+            case .sport:
+                return ["ski", "surf", "plongée", "golf"]
+            case .sante:
+                return ["spas", "piscine"]
+            case .culture:
+                return ["theatre", "opera", "festivals"]
+            case .art:
+                return ["art", "galerie"]
+            }
         }
-    }
+    
 }
 
 
@@ -140,7 +180,7 @@ struct PickerPointOfInterestCategory: View {
     private let categories = PointOfInterestType.allCases
     
     var body : some View {
-        ScrollView(.horizontal){
+        ScrollView(.horizontal, showsIndicators: false){
             HStack{
             ForEach(categories.indices) { index in
                     Button {
@@ -148,10 +188,12 @@ struct PickerPointOfInterestCategory: View {
                     } label: {
                         Text(categories[index].rawValue.capitalized)
                             .foregroundColor(selectedCategories == categories[index] ? Color.white : offcolor)
-                    }.padding(.horizontal, 8)
-                   
+                    }.padding(12)
+                    .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(selectedCategories == categories[index] ? oncolor : Color(UIColor.lightGray), lineWidth: 1))
                     .background(selectedCategories == categories[index] ? oncolor : Color.white )
-                    .cornerRadius(10)
+                    .cornerRadius(15)
                 }
             }
         }
@@ -202,7 +244,7 @@ struct ListPointOfInterestView: View {
     var pointofinterest: [PointOfInterest]
     var body: some View {
         VStack{
-            HeaderModelView(title: "Liste des Points ", PresenseBackButton: true, PresenceIcon: false, BackButtonClick: {self.presentationMode.wrappedValue.dismiss()}, value: [])
+            HeaderModelView(title: "Liste des Points ", PresenseBackButton: true, PresenceIcon: false, BackButtonIcon: "map", BackButtonClick: {self.presentationMode.wrappedValue.dismiss()}, value: [])
                 .frame(maxWidth: .infinity)
             ScrollView{
                 ForEach(pointofinterest) { i in

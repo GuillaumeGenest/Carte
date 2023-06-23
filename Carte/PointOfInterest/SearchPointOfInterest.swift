@@ -12,7 +12,7 @@ import UIKit
 
 class SearchPointOfInterests: NSObject, ObservableObject, MKLocalSearchCompleterDelegate {
     @Published var pointsOfInterest: [PointOfInterest] = []
-    @Published var selectedType: PointOfInterestType = .Histoire
+    @Published var selectedType: PointOfInterestType = .Monument
     @Published var ShowPointOfInterest: Bool = false
     @Published var ShowInformationMapItem: Bool = false
     @Published var ShowPointOfInterestOnMap: Bool = false

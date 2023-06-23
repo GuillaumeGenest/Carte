@@ -157,7 +157,7 @@ struct MapPointOfInterest: View {
     @State private var user = MapUserTrackingMode.follow
     @StateObject var search = SearchPointOfInterests()
     @State var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 45.188529, longitude: 5.724524), latitudinalMeters: 2000, longitudinalMeters: 2000)
-    @State var category : PointOfInterestType = .Histoire
+    @State var category : PointOfInterestType = .Monument
     @State private var ShowListPointOfInterest : Bool = false
     
     
@@ -229,6 +229,7 @@ struct MapPointOfInterest: View {
                 .onChange(of: search.selectedType) { _ in
                     search.ShowInformationMapItem = false
                     search.searchPointsOfInterest()
+                    search.searchRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 45.188529, longitude: 5.724524), latitudinalMeters: 20000, longitudinalMeters: 20000)
                 }
                 .navigationBarHidden(true)
                 .navigationDestination(isPresented: $ShowListPointOfInterest) {
