@@ -22,7 +22,7 @@ struct ContentView: View {
     
     
     @State private var ShowInformationMapItem : Bool = false
-    @State private var ShowListPointOfInterest : Bool = false
+    @State private var ShowMap : Bool = false
     @State private var ShowPointOfInterestMarker : Bool = false
     @State private var pointsOfInterest: [MKMapFeatureAnnotation] = []
     
@@ -35,70 +35,37 @@ struct ContentView: View {
         }
     }
     var body: some View {
+        NavigationStack{
             ZStack{
-                if search.ShowPointOfInterestOnMap {
-                    Map(coordinateRegion: $region,interactionModes: .all,
-                        showsUserLocation: true,
-                        userTrackingMode: $user,
-                        annotationItems: search.pointsOfInterest,
-                        annotationContent: { location in
-                        MapAnnotation(coordinate: location.mapItem.placemark.coordinate){
-                            VStack(spacing: 0) {
-                                Image(systemName: "mappin")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 12, height: 12)
-                                    .font(.headline)
-                                    .foregroundColor(Color.white)
-                                    .padding(6)
-                                    .background(search.selectedType.color)
-                                    .clipShape(Circle())
-                                Image(systemName: "triangle.fill")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .foregroundColor(search.selectedType.color)
-                                    .frame(width: 8, height: 8)
-                                    .rotationEffect(Angle(degrees: 180))
-                                    .offset(y: -2.5)
-                                    .padding(.bottom, 40)
-                            }
-                            .onTapGesture {
-                                self.ShowDetailPlaceAnnotation = location
-                                search.ShowInformationMapItem.toggle()
-                                
-                            }
+                Map(coordinateRegion: $region, showsUserLocation: true, userTrackingMode: $user, annotationItems: MockedDataMapAnnotation,
+                    annotationContent: { location in
+                    MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)) {
+                        VStack(spacing: 0) {
+                            Image(systemName: "map")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 15, height: 15)
+                                .font(.headline)
+                                .foregroundColor(Color.black)
+                                .padding(6)
+                                .background(Color.white)
+                                .clipShape(Circle())
+                            Image(systemName: "triangle.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .foregroundColor(.black)
+                                .frame(width: 10, height: 10)
+                                .rotationEffect(Angle(degrees: 180))
+                                .offset(y: -1.5)
+                                .padding(.bottom, 40)
                         }
-                    }).edgesIgnoringSafeArea(.all)
-                }else{
-                    Map(coordinateRegion: $region, showsUserLocation: true, userTrackingMode: $user, annotationItems: MockedDataMapAnnotation,
-                        annotationContent: { location in
-                      MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)) {
-                          VStack(spacing: 0) {
-                              Image(systemName: "map")
-                                  .resizable()
-                                  .scaledToFit()
-                                  .frame(width: 15, height: 15)
-                                  .font(.headline)
-                                  .foregroundColor(Color.black)
-                                  .padding(6)
-                                  .background(Color.white)
-                                  .clipShape(Circle())
-                              Image(systemName: "triangle.fill")
-                                  .resizable()
-                                  .scaledToFit()
-                                  .foregroundColor(.black)
-                                  .frame(width: 10, height: 10)
-                                  .rotationEffect(Angle(degrees: 180))
-                                  .offset(y: -1.5)
-                                  .padding(.bottom, 40)
-                          }
-                        }
-                  })
-                        .edgesIgnoringSafeArea(.all)
                     }
+                })
+                .edgesIgnoringSafeArea(.all)
+                
                 VStack{
                     Spacer()
-
+                    
                     Spacer()
                     HStack{
                         if search.ShowInformationMapItem{
@@ -109,17 +76,8 @@ struct ContentView: View {
                             
                             VStack(){
                                 Button {
-                                    search.ShowPointOfInterestOnMap = false
-                                } label: {
-                                    Image(systemName: "map")
-                                        .font(.title2)
-                                        .padding(10)
-                                        .background(Color.primary)
-                                        .clipShape(Circle())
-                                }
-                                Button {
-                                    search.searchPointsOfInterest()
-                                    ShowListPointOfInterest.toggle()
+                                    ShowMap.toggle()
+                                    print("La valeur de ShowMap = \(ShowMap)")
                                 } label: {
                                     Image(systemName: "info")
                                         .font(.title2)
@@ -130,16 +88,14 @@ struct ContentView: View {
                                 
                             }
                         }
-                        }.frame(maxWidth: .infinity, alignment: .trailing)
+                    }.frame(maxWidth: .infinity, alignment: .trailing)
                         .padding()
                 }
-            }.sheet(isPresented: $ShowListPointOfInterest){
-                PointOfInterestListView(show: $ShowPointOfInterestMarker, dismiss: $ShowListPointOfInterest, category: $search.selectedType, pointofinterest: search.pointsOfInterest)
-                    .environmentObject(search)
-                    .onChange(of: search.selectedType) { _ in
-                    search.searchPointsOfInterest()
-                }
+            }.navigationDestination(isPresented: $ShowMap) {
+                MapPointOfInterest()
+                    .navigationBarHidden(true)
             }
+        }
     }
 }
 
@@ -153,6 +109,7 @@ struct ContentView_Previews: PreviewProvider {
 
 
 struct MapPointOfInterest: View {
+    @Environment(\.presentationMode) var presentationMode
     @StateObject var userlocation = locationManager()
     @State private var user = MapUserTrackingMode.follow
     @StateObject var search = SearchPointOfInterests()
@@ -168,9 +125,8 @@ struct MapPointOfInterest: View {
     @State var ShowDetailPlaceAnnotation : PointOfInterest?
     
     var body: some View{
-        NavigationStack{
             VStack{
-                HeaderModelView(title: "Carte", PresenseBackButton: true, PresenceIcon: true, BackButtonClick: {  }, value: [ConfigurationHeaderButton(NameLabel: "List", NameIcon: "list.dash", action: {self.ShowListPointOfInterest.toggle()})])
+                HeaderModelView(title: "Carte", PresenseBackButton: true, PresenceIcon: true, BackButtonClick: { self.presentationMode.wrappedValue.dismiss()}, value: [ConfigurationHeaderButton(NameLabel: "List", NameIcon: "list.dash", action: {self.ShowListPointOfInterest.toggle()})])
                     .frame(maxWidth: .infinity)
                 PickerPointOfInterestCategory(selectedCategories: $search.selectedType)
                     .padding(10)
@@ -237,6 +193,5 @@ struct MapPointOfInterest: View {
                         .navigationBarHidden(true)
                         .environmentObject(search)
                 }
-        }
     }
 }
